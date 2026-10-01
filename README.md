@@ -95,3 +95,5 @@ This application is fully optimized for Vercel deployment.
 4. Deploy!
 
 Ensure you update your Clerk settings (URLs and Webhooks) to match your production domain.
+
+# deploy
