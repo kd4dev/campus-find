@@ -64,10 +64,10 @@ export default function ClaimButton({ item, currentUser }: { item: any, currentU
         whileTap={{ scale: isResolved || isSubmitting ? 1 : 0.97 }}
         onClick={handleClaim}
         disabled={isSubmitting || isResolved}
-        className={`w-full font-semibold py-3.5 px-4 rounded-xl flex justify-center items-center shadow-sm transition-all duration-200 cursor-pointer ${
+        className={`w-full font-semibold py-3.5 px-4 flex justify-center items-center shadow-sm transition-all duration-200 cursor-pointer ${
           isResolved 
-            ? "bg-gray-100 text-gray-500 cursor-not-allowed border" 
-            : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50"
+            ? "bg-neutral-100 dark:bg-[#18181c] text-neutral-500 dark:text-neutral-400 cursor-not-allowed border border-neutral-200 dark:border-white/10 rounded-xl" 
+            : "btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white shadow-[0_0_20px_-3px_rgba(255,125,12,0.4)] disabled:opacity-50"
         }`}
       >
         {isSubmitting ? (
@@ -77,7 +77,7 @@ export default function ClaimButton({ item, currentUser }: { item: any, currentU
           </>
         ) : isResolved ? (
           <>
-            <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
+            <CheckCircle className="w-5 h-5 mr-2 text-emerald-600 dark:text-emerald-400" />
             <span>{buttonText}</span>
           </>
         ) : (
@@ -90,13 +90,13 @@ export default function ClaimButton({ item, currentUser }: { item: any, currentU
       </motion.button>
       
       {item.status === 'CLAIM_PENDING' && !isResolved && (
-        <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 text-center">
+        <div className="p-2.5 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/30 rounded-xl text-xs text-amber-800 dark:text-amber-300 text-center">
           A claim verification is currently in progress for this item. You can still reach out or view existing discussion.
         </div>
       )}
 
       {!isResolved && (
-        <p className="text-xs text-center text-gray-500">
+        <p className="text-xs text-center text-slate-500 dark:text-neutral-400">
           This will open a secure claim workflow with private chat to verify details.
         </p>
       )}

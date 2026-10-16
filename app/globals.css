@@ -64,10 +64,10 @@
 }
 
 .dark {
-  --background: #080c14;
-  --foreground: #f8fafc;
-  --card-bg: #0d1322;
-  --border-color: #1e293b;
+  --background: #0a0a0b;
+  --foreground: #f4f4f5;
+  --card-bg: #141416;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -122,8 +122,8 @@ body {
 }
 
 .dark .glass-panel {
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(30, 41, 59, 0.8);
+  background: rgba(20, 20, 22, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Micro-interaction tap animation classes */

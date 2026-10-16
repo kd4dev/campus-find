@@ -53,10 +53,10 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+      <div className="bg-white dark:bg-[#141416] rounded-2xl shadow-sm border border-slate-200 dark:border-white/10 overflow-hidden">
         <div className="grid md:grid-cols-2">
           {/* Images */}
-          <div className="bg-slate-100 dark:bg-slate-950 min-h-[300px] md:min-h-full">
+          <div className="bg-slate-100 dark:bg-[#0e0e11] min-h-[300px] md:min-h-full">
             <ImageGallery images={item.images || []} itemName={item.itemName} />
           </div>
 
@@ -74,7 +74,7 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                 <h1 className="text-3xl font-bold mb-2 text-slate-900 dark:text-white tracking-tight">{item.itemName}</h1>
               </div>
               <div className="text-right">
-                <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-md font-semibold">
+                <span className="text-xs bg-slate-100 dark:bg-[#1f1f23] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10 px-2.5 py-1 rounded-md font-semibold">
                   {item.status}
                 </span>
               </div>
@@ -97,39 +97,39 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                 </span>
               </div>
               
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <div className="pt-4 border-t border-slate-200 dark:border-white/10">
                 <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">Description</h3>
-                <p className="text-slate-600 dark:text-slate-300 whitespace-pre-wrap text-sm leading-relaxed">{item.description}</p>
+                <p className="text-slate-600 dark:text-neutral-300 whitespace-pre-wrap text-sm leading-relaxed">{item.description}</p>
               </div>
 
               {(item.color || item.brand || item.itemModel) && (
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4">
-                  {item.color && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Color</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.color}</span></div>}
-                  {item.brand && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Brand</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.brand}</span></div>}
-                  {item.itemModel && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Model</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.itemModel}</span></div>}
+                <div className="pt-4 border-t border-slate-200 dark:border-white/10 grid grid-cols-2 gap-4">
+                  {item.color && <div><span className="text-slate-500 dark:text-neutral-400 text-xs block mb-0.5">Color</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.color}</span></div>}
+                  {item.brand && <div><span className="text-slate-500 dark:text-neutral-400 text-xs block mb-0.5">Brand</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.brand}</span></div>}
+                  {item.itemModel && <div><span className="text-slate-500 dark:text-neutral-400 text-xs block mb-0.5">Model</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.itemModel}</span></div>}
                 </div>
               )}
 
               {item.distinguishingFeatures && item.type === 'LOST' && (
-                <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
-                  <h3 className="font-semibold text-xs text-slate-500 dark:text-slate-400 mb-1">Distinguishing Features</h3>
+                <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                  <h3 className="font-semibold text-xs text-slate-500 dark:text-neutral-400 mb-1">Distinguishing Features</h3>
                   <p className="text-slate-900 dark:text-slate-100 text-sm">{item.distinguishingFeatures}</p>
                 </div>
               )}
             </div>
 
-            <div className="mt-auto border-t border-slate-200 dark:border-slate-800 pt-6">
+            <div className="mt-auto border-t border-slate-200 dark:border-white/10 pt-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center">
                   {item.userId?.avatar ? (
-                    <img src={item.userId.avatar} alt={item.userId.name} className="w-10 h-10 rounded-full mr-3 border border-slate-200 dark:border-slate-700 object-cover" />
+                    <img src={item.userId.avatar} alt={item.userId.name} className="w-10 h-10 rounded-full mr-3 border border-slate-200 dark:border-white/10 object-cover" />
                   ) : (
-                    <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full mr-3 flex items-center justify-center text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                    <div className="w-10 h-10 bg-slate-100 dark:bg-[#18181c] rounded-full mr-3 flex items-center justify-center text-slate-500 dark:text-neutral-400 border border-slate-200 dark:border-white/10">
                       <UserIcon className="w-5 h-5" />
                     </div>
                   )}
                   <div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Reported by</p>
+                    <p className="text-xs text-slate-500 dark:text-neutral-400">Reported by</p>
                     <p className="font-medium text-slate-900 dark:text-white text-sm">{item.userId?.name || 'College Student'}</p>
                   </div>
                 </div>
@@ -141,14 +141,14 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
 
               {currentUser ? (
                 isOwner ? (
-                  <div className="bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/60 p-4 rounded-xl">
+                  <div className="bg-orange-50/80 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-500/30 p-4 rounded-xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
-                        <ShieldCheck className="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400 shrink-0" />
-                        <span className="font-semibold text-blue-900 dark:text-blue-200 text-sm">You reported this item</span>
+                        <ShieldCheck className="w-5 h-5 mr-2 text-[#ff7d0c] dark:text-[#f79b4a] shrink-0" />
+                        <span className="font-semibold text-orange-950 dark:text-[#f79b4a] text-sm">You reported this item</span>
                       </div>
                       {itemClaims.length > 0 && (
-                        <span className="text-xs bg-blue-200 dark:bg-blue-900/60 text-blue-900 dark:text-blue-200 font-bold px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-orange-200 dark:bg-orange-950/60 text-orange-900 dark:text-[#f79b4a] font-bold px-2.5 py-0.5 rounded-full border border-orange-300 dark:border-orange-500/30">
                           {itemClaims.length} Response{itemClaims.length > 1 ? "s" : ""}
                         </span>
                       )}
@@ -160,14 +160,14 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                           const isClaimant = c.claimantId?._id?.toString() === currentUserId;
                           const otherParty = isClaimant ? c.finderId : c.claimantId;
                           return (
-                            <div key={c._id} className="bg-white dark:bg-slate-800/90 p-3 rounded-lg border border-blue-100 dark:border-slate-700 flex items-center justify-between shadow-sm">
+                            <div key={c._id} className="bg-white dark:bg-[#18181c] p-3 rounded-lg border border-orange-100 dark:border-white/10 flex items-center justify-between shadow-sm">
                               <div>
-                                <p className="text-xs text-slate-500 dark:text-slate-400">From <span className="font-semibold text-slate-800 dark:text-slate-200">{otherParty?.name || 'Student'}</span></p>
-                                <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Status: <span className="font-medium text-blue-600 dark:text-blue-400">{c.status}</span></p>
+                                <p className="text-xs text-slate-500 dark:text-neutral-400">From <span className="font-semibold text-slate-800 dark:text-slate-200">{otherParty?.name || 'Student'}</span></p>
+                                <p className="text-xs text-slate-600 dark:text-neutral-300 mt-0.5">Status: <span className="font-medium text-[#ff7d0c] dark:text-[#f79b4a]">{c.status}</span></p>
                               </div>
                               <Link 
                                 href={`/claims/${c._id}`}
-                                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors shadow-sm"
+                                className="btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white text-xs font-semibold px-3.5 py-1.5 transition-colors shadow-sm"
                               >
                                 Open Claim & Chat
                               </Link>
@@ -176,20 +176,20 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                         })}
                       </div>
                     ) : (
-                      <p className="text-xs text-blue-700 dark:text-blue-300 mt-1">
+                      <p className="text-xs text-orange-900/80 dark:text-[#f79b4a]/90 mt-1">
                         Your listing is visible on campus. When someone responds or claims it, you'll see them here and receive a notification.
                       </p>
                     )}
                   </div>
                 ) : userClaim ? (
-                  <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 p-4 rounded-xl space-y-3">
+                  <div className="bg-amber-50/80 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/30 p-4 rounded-xl space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-amber-900 dark:text-amber-200">You have an ongoing claim</span>
                       <span className="text-xs bg-amber-200 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 px-2 py-0.5 rounded font-bold">{userClaim.status}</span>
                     </div>
                     <Link
                       href={`/claims/${userClaim._id}`}
-                      className="w-full block text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg text-sm transition-colors shadow-sm"
+                      className="w-full block text-center btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white font-medium py-2.5 text-sm transition-colors shadow-sm"
                     >
                       Open Your Claim & Chat
                     </Link>
@@ -198,9 +198,9 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                   <ClaimButton item={item} currentUser={currentUser} />
                 )
               ) : (
-                <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl text-center border border-slate-200 dark:border-slate-700">
-                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-3">Sign in to contact the reporter or claim this item.</p>
-                  <a href="/sign-in" className="inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors shadow-sm">Sign In</a>
+                <div className="bg-slate-50 dark:bg-[#18181c] p-4 rounded-xl text-center border border-slate-200 dark:border-white/10">
+                  <p className="text-slate-600 dark:text-neutral-300 text-sm mb-3">Sign in to contact the reporter or claim this item.</p>
+                  <a href="/sign-in" className="inline-block btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white px-6 py-2 font-medium text-sm transition-colors shadow-sm">Sign In</a>
                 </div>
               )}
             </div>

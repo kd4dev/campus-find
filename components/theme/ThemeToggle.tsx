@@ -29,7 +29,7 @@ export default function ThemeToggle() {
         onClick={() => setOpen((prev) => !prev)}
         aria-label="Toggle theme"
         aria-expanded={open}
-        className="cursor-pointer p-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 transition-colors border border-gray-200/80 dark:border-slate-800 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="cursor-pointer p-2 rounded-xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/[0.06] transition-colors border border-neutral-200/80 dark:border-white/10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/40"
       >
         <AnimatePresence mode="wait" initial={false}>
           {resolvedTheme === "dark" ? (
@@ -40,7 +40,7 @@ export default function ThemeToggle() {
               exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
               transition={{ duration: 0.18 }}
             >
-              <Moon className="w-4 h-4 text-indigo-400" />
+              <Moon className="w-4 h-4 text-[#f79b4a]" />
             </motion.div>
           ) : (
             <motion.div
@@ -64,23 +64,23 @@ export default function ThemeToggle() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-36 rounded-2xl bg-white dark:bg-slate-900 border border-gray-200/80 dark:border-slate-800 shadow-xl p-1.5 z-50 overflow-hidden"
+            className="absolute right-0 mt-2 w-36 rounded-2xl bg-white dark:bg-[#141416] border border-neutral-200/80 dark:border-white/10 shadow-xl p-1.5 z-50 overflow-hidden"
           >
             <button
               onClick={() => {
                 setTheme("light");
                 setOpen(false);
               }}
-              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors ${
+              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors cursor-pointer ${
                 theme === "light"
-                  ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-slate-800"
+                  ? "bg-orange-50 text-orange-700 dark:bg-orange-950/60 dark:text-[#f79b4a]"
+                  : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-white/5"
               }`}
             >
               <span className="flex items-center gap-2">
                 <Sun className="w-3.5 h-3.5 text-amber-500" /> Light
               </span>
-              {theme === "light" && <Check className="w-3.5 h-3.5" />}
+              {theme === "light" && <Check className="w-3.5 h-3.5 text-orange-600 dark:text-[#f79b4a]" />}
             </button>
 
             <button
@@ -88,16 +88,16 @@ export default function ThemeToggle() {
                 setTheme("dark");
                 setOpen(false);
               }}
-              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors ${
+              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors cursor-pointer ${
                 theme === "dark"
-                  ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-slate-800"
+                  ? "bg-orange-50 text-orange-700 dark:bg-orange-950/60 dark:text-[#f79b4a]"
+                  : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-white/5"
               }`}
             >
               <span className="flex items-center gap-2">
-                <Moon className="w-3.5 h-3.5 text-indigo-400" /> Dark
+                <Moon className="w-3.5 h-3.5 text-[#f79b4a]" /> Dark
               </span>
-              {theme === "dark" && <Check className="w-3.5 h-3.5" />}
+              {theme === "dark" && <Check className="w-3.5 h-3.5 text-orange-600 dark:text-[#f79b4a]" />}
             </button>
 
             <button
@@ -105,16 +105,16 @@ export default function ThemeToggle() {
                 setTheme("system");
                 setOpen(false);
               }}
-              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors ${
+              className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-colors cursor-pointer ${
                 theme === "system"
-                  ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-slate-800"
+                  ? "bg-orange-50 text-orange-700 dark:bg-orange-950/60 dark:text-[#f79b4a]"
+                  : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-white/5"
               }`}
             >
               <span className="flex items-center gap-2">
-                <Laptop className="w-3.5 h-3.5 text-gray-500" /> System
+                <Laptop className="w-3.5 h-3.5 text-neutral-400" /> System
               </span>
-              {theme === "system" && <Check className="w-3.5 h-3.5" />}
+              {theme === "system" && <Check className="w-3.5 h-3.5 text-orange-600 dark:text-[#f79b4a]" />}
             </button>
           </motion.div>
         )}

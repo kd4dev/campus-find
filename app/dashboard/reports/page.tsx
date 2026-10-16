@@ -21,40 +21,40 @@ export default async function MyReports() {
           <Link href="/items/lost/new" className="bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50 px-4 py-2 rounded-xl text-sm font-semibold transition-colors">
             + Report Lost
           </Link>
-          <Link href="/items/found/new" className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-colors shadow-sm">
+          <Link href="/items/found/new" className="btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white px-4 py-2 text-sm font-semibold transition-colors shadow-sm">
             + Report Found
           </Link>
         </div>
       </div>
 
       {items.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-12 text-center">
-          <p className="text-slate-500 dark:text-slate-400 font-medium">You haven't reported any items yet.</p>
+        <div className="bg-white dark:bg-[#141416] rounded-2xl border border-slate-200 dark:border-white/10 p-12 text-center">
+          <p className="text-slate-500 dark:text-neutral-400 font-medium">You haven't reported any items yet.</p>
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+        <div className="bg-white dark:bg-[#141416] rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800">
+              <thead className="bg-slate-50 dark:bg-[#18181c] border-b border-slate-200 dark:border-white/10">
                 <tr>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Item</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date Reported</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Action</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">Item</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">Type</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">Date Reported</th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-200 dark:border-white/10">
                 {items.map((item: any) => (
-                  <tr key={item._id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                  <tr key={item._id} className="hover:bg-slate-50 dark:hover:bg-white/[0.03] transition-colors">
                     <td className="px-6 py-4">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg mr-3 overflow-hidden border border-slate-200 dark:border-slate-700">
+                        <div className="h-10 w-10 flex-shrink-0 bg-slate-100 dark:bg-[#18181c] rounded-lg mr-3 overflow-hidden border border-slate-200 dark:border-white/10">
                           {item.images && item.images.length > 0 && <img src={item.images[0].url} alt={item.itemName} className="h-full w-full object-cover" />}
                         </div>
                         <div>
                           <p className="font-semibold text-slate-900 dark:text-white text-sm">{item.itemName}</p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400">{item.location}</p>
+                          <p className="text-xs text-slate-500 dark:text-neutral-400">{item.location}</p>
                         </div>
                       </div>
                     </td>
@@ -67,14 +67,14 @@ export default async function MyReports() {
                         {item.type}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <td className="px-6 py-4 text-sm font-medium text-slate-700 dark:text-neutral-300">
                       {item.status}
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-neutral-400">
                       {format(new Date(item.createdAt), 'MMM d, yyyy')}
                     </td>
                     <td className="px-6 py-4 text-sm font-medium">
-                      <Link href={`/items/${item._id}`} className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors">
+                      <Link href={`/items/${item._id}`} className="text-[#ff7d0c] dark:text-[#f79b4a] hover:underline font-semibold transition-colors">
                         View &rarr;
                       </Link>
                     </td>

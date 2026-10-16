@@ -25,7 +25,7 @@ export default async function BrowseItems({
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 transition-colors">
       <div className="mb-8">
-        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-100 dark:border-blue-900/50">
+        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-orange-500/10 text-orange-600 dark:text-[#f79b4a] border border-orange-500/20">
           Live Campus Directory
         </span>
         <h1 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-tight mt-2">

@@ -45,7 +45,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/85 dark:bg-[#0a0e17]/90 backdrop-blur-md border-b border-neutral-200/80 dark:border-white/10 z-50 transition-colors shadow-xs">
+    <nav className="fixed top-0 w-full bg-white/85 dark:bg-[#0a0a0b]/90 backdrop-blur-md border-b border-neutral-200/80 dark:border-white/10 z-50 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
@@ -144,7 +144,7 @@ export default function Navbar() {
                 >
                   <Bell className="w-5 h-5" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#FF7D0C] rounded-full ring-2 ring-white dark:ring-[#0a0e17] animate-pulse" />
+                    <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#FF7D0C] rounded-full ring-2 ring-white dark:ring-[#0a0a0b] animate-pulse" />
                   )}
                 </Link>
                 <div className="pl-2 border-l border-neutral-200 dark:border-white/10">
@@ -175,7 +175,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 cursor-pointer"
+              className="text-gray-600 dark:text-neutral-300 hover:text-gray-900 dark:hover:text-white p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -191,17 +191,17 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 dark:bg-[#0c1322]/98 backdrop-blur-md border-b border-gray-200 dark:border-slate-800/80 overflow-hidden shadow-xl"
+            className="md:hidden bg-white/95 dark:bg-[#0a0a0b]/98 backdrop-blur-md border-b border-gray-200 dark:border-white/10 overflow-hidden shadow-xl"
           >
             <div className="px-4 pt-3 pb-5 space-y-1.5">
-              <Link href="/items" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors">Find Items</Link>
-              <Link href="/items/lost/new" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors">Report Lost</Link>
-              <Link href="/items/found/new" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors">Report Found</Link>
+              <Link href="/items" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors">Find Items</Link>
+              <Link href="/items/lost/new" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors">Report Lost</Link>
+              <Link href="/items/found/new" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors">Report Found</Link>
               {isSignedIn ? (
                 <>
-                  <Link href="/dashboard" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors">Dashboard</Link>
-                  <Link href="/messages" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors">Messages</Link>
-                  <Link href="/notifications" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/70 rounded-xl transition-colors flex items-center justify-between">
+                  <Link href="/dashboard" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors">Dashboard</Link>
+                  <Link href="/messages" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors">Messages</Link>
+                  <Link href="/notifications" className="block px-3 py-2 text-sm font-medium text-gray-700 dark:text-neutral-200 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
                     <span>Notifications</span>
                     {unreadCount > 0 && (
                       <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
@@ -215,8 +215,8 @@ export default function Navbar() {
                 </>
               ) : (
                 <div className="pt-2 flex flex-col gap-2">
-                  <Link href="/sign-in" className="block text-center px-4 py-2 text-sm font-medium border border-gray-200 dark:border-slate-700/80 text-gray-800 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-800/60 rounded-xl transition-colors">Sign In</Link>
-                  <Link href="/sign-up" className="block text-center px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white rounded-xl shadow-sm dark:shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)] transition-all">Sign Up</Link>
+                  <Link href="/sign-in" className="block text-center px-4 py-2 text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-800 dark:text-neutral-200 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors">Sign In</Link>
+                  <Link href="/sign-up" className="btn-asym block text-center px-4 py-2 text-sm font-bold bg-[#FF7D0C] hover:bg-[#ea6c00] text-white shadow-sm dark:shadow-[0_0_15px_-3px_rgba(255,125,12,0.4)] transition-all">Sign Up</Link>
                 </div>
               )}
             </div>

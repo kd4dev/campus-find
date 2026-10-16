@@ -85,22 +85,22 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
   if (loading) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-8 space-y-2">
-        <Loader2 className="w-7 h-7 animate-spin text-blue-600" />
-        <span className="text-xs text-gray-400">Loading conversation...</span>
+        <Loader2 className="w-7 h-7 animate-spin text-[#ff7d0c] dark:text-[#f79b4a]" />
+        <span className="text-xs text-slate-400 dark:text-neutral-500">Loading conversation...</span>
       </div>
     );
   }
 
   return (
     <>
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/50 dark:bg-[#0a0a0b]">
         {messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-gray-400 text-sm space-y-2 p-6 text-center">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center font-bold">
+          <div className="h-full flex flex-col items-center justify-center text-slate-400 dark:text-neutral-500 text-sm space-y-2 p-6 text-center">
+            <div className="w-10 h-10 rounded-full bg-orange-50 dark:bg-orange-950/40 text-[#ff7d0c] dark:text-[#f79b4a] border border-orange-100 dark:border-orange-500/30 flex items-center justify-center font-bold">
               💬
             </div>
-            <p className="font-medium text-gray-600">No messages yet</p>
-            <p className="text-xs text-gray-400 max-w-xs">
+            <p className="font-medium text-slate-700 dark:text-neutral-200">No messages yet</p>
+            <p className="text-xs text-slate-400 dark:text-neutral-400 max-w-xs">
               Say hello and ask specific verification questions about the item to verify ownership safely.
             </p>
           </div>
@@ -119,11 +119,11 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
                 >
                   <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 shadow-sm ${
                     isMe 
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-br-none' 
-                      : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
+                      ? 'bg-[#FF7D0C] text-white rounded-br-none' 
+                      : 'bg-white dark:bg-[#18181c] text-slate-800 dark:text-neutral-100 border border-slate-100 dark:border-white/10 rounded-bl-none'
                   }`}>
                     <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
-                    <p className={`text-[10px] mt-1 text-right ${isMe ? 'text-blue-200' : 'text-gray-400'}`}>
+                    <p className={`text-[10px] mt-1 text-right ${isMe ? 'text-orange-100' : 'text-slate-400 dark:text-neutral-500'}`}>
                       {msg.createdAt ? format(new Date(msg.createdAt), 'h:mm a') : 'Sending...'}
                     </p>
                   </div>
@@ -135,14 +135,14 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-3 bg-white border-t">
+      <div className="p-3 bg-white dark:bg-[#141416] border-t border-slate-200 dark:border-white/10">
         <form onSubmit={sendMessage} className="flex items-center gap-2">
           <input 
             type="text" 
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a secure message..."
-            className="flex-1 border border-gray-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50/50"
+            className="flex-1 border border-slate-200 dark:border-white/10 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] dark:focus:border-[#f79b4a] bg-slate-50/50 dark:bg-[#18181c] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-neutral-500"
             disabled={sending}
           />
           <motion.button 
@@ -150,7 +150,7 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
             whileTap={{ scale: 0.92 }}
             type="submit" 
             disabled={!newMessage.trim() || sending}
-            className="bg-blue-600 text-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center disabled:opacity-40 hover:bg-blue-700 transition-colors shadow-sm cursor-pointer"
+            className="btn-asym bg-[#FF7D0C] text-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center disabled:opacity-40 hover:bg-[#ea6c00] transition-colors shadow-sm cursor-pointer"
           >
             {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 ml-0.5" />}
           </motion.button>

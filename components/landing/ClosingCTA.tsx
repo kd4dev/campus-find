@@ -6,7 +6,7 @@ import { ArrowUpRight, PlusCircle, Search, ShieldCheck } from "lucide-react";
 export default function ClosingCTA() {
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto">
-      <div className="rounded-3xl bg-neutral-900 text-white dark:bg-[#0c0f17] dark:border dark:border-white/10 p-8 sm:p-12 md:p-16 relative overflow-hidden shadow-2xl">
+      <div className="rounded-3xl bg-neutral-900 text-white dark:bg-[#141416] dark:border dark:border-white/10 p-8 sm:p-12 md:p-16 relative overflow-hidden shadow-2xl">
         {/* Subtle warm interior glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 dark:bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 dark:bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />

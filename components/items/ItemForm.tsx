@@ -98,14 +98,14 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium mb-1">Item Name *</label>
-          <input {...register("itemName")} className="w-full border rounded-md p-2" placeholder="e.g. Black Leather Wallet" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Item Name *</label>
+          <input {...register("itemName")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Black Leather Wallet" />
           {errors.itemName && <p className="text-red-500 text-xs mt-1">{errors.itemName.message}</p>}
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1">Category *</label>
-          <select {...register("category")} className="w-full border rounded-md p-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Category *</label>
+          <select {...register("category")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c]">
             <option value="">Select a category</option>
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -114,63 +114,63 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Description *</label>
-        <textarea {...register("description")} className="w-full border rounded-md p-2 h-24" placeholder="Describe the item..." />
+        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Description *</label>
+        <textarea {...register("description")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500 h-24" placeholder="Describe the item..." />
         {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium mb-1">{type === 'LOST' ? 'Lost' : 'Found'} Location *</label>
-          <input {...register("location")} className="w-full border rounded-md p-2" placeholder="e.g. Main Library, 2nd floor" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">{type === 'LOST' ? 'Lost' : 'Found'} Location *</label>
+          <input {...register("location")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Main Library, 2nd floor" />
           {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location.message}</p>}
         </div>
         
         <div>
-          <label className="block text-sm font-medium mb-1">Date *</label>
-          <input type="date" {...register("date")} className="w-full border rounded-md p-2" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Date *</label>
+          <input type="date" {...register("date")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c]" />
           {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium mb-1">Color</label>
-          <input {...register("color")} className="w-full border rounded-md p-2" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Color</label>
+          <input {...register("color")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Brand</label>
-          <input {...register("brand")} className="w-full border rounded-md p-2" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Brand</label>
+          <input {...register("brand")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Model</label>
-          <input {...register("itemModel")} className="w-full border rounded-md p-2" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Model</label>
+          <input {...register("itemModel")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">
           Distinguishing Features
-          {type === 'FOUND' && <span className="text-gray-500 text-xs ml-2">(Keep some private for verification)</span>}
+          {type === 'FOUND' && <span className="text-slate-500 dark:text-neutral-400 text-xs ml-2">(Keep some private for verification)</span>}
         </label>
-        <input {...register("distinguishingFeatures")} className="w-full border rounded-md p-2" placeholder="e.g. Scratch on left side" />
+        <input {...register("distinguishingFeatures")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Scratch on left side" />
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">Images</label>
+        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Images</label>
         <div className="flex flex-wrap gap-4 mb-4">
           {images.map((img, i) => (
-            <div key={i} className="relative w-24 h-24 border rounded-md overflow-hidden">
+            <div key={i} className="relative w-24 h-24 border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden">
               <img src={img.url} alt="Uploaded" className="w-full h-full object-cover" />
-              <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-white rounded-full p-1 shadow">
+              <button type="button" onClick={() => removeImage(i)} className="absolute top-1 right-1 bg-white dark:bg-[#141416] border border-gray-200 dark:border-white/10 rounded-full p-1 shadow">
                 <X className="w-4 h-4 text-red-500" />
               </button>
             </div>
           ))}
           {images.length < 5 && (
-            <label className="w-24 h-24 border-2 border-dashed rounded-md flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50">
-              {uploading ? <Loader2 className="w-6 h-6 animate-spin text-gray-400" /> : <UploadCloud className="w-6 h-6 text-gray-400" />}
-              <span className="text-xs text-gray-500 mt-1">Upload</span>
+            <label className="w-24 h-24 border-2 border-dashed border-gray-300 dark:border-white/10 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 bg-white dark:bg-[#18181c]">
+              {uploading ? <Loader2 className="w-6 h-6 animate-spin text-gray-400 dark:text-neutral-400" /> : <UploadCloud className="w-6 h-6 text-gray-400 dark:text-neutral-400" />}
+              <span className="text-xs text-gray-500 dark:text-neutral-400 mt-1">Upload</span>
               <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
             </label>
           )}
@@ -182,7 +182,7 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
         type="submit" 
         disabled={isSubmitting} 
-        className="cursor-pointer w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 flex justify-center items-center shadow-md transition-all"
+        className="cursor-pointer w-full btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white font-semibold py-3.5 px-4 disabled:opacity-50 flex justify-center items-center shadow-md dark:shadow-[0_0_20px_-3px_rgba(255,125,12,0.4)] transition-all"
       >
         {isSubmitting ? (
           <>

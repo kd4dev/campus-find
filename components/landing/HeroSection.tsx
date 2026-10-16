@@ -11,7 +11,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-orange-50/30 via-slate-50/20 to-transparent dark:hidden pointer-events-none -z-10" />
 
       {/* Dark mode atmospheric illumination with warm subtle depth */}
-      <div className="hidden dark:block absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(255,125,12,0.12),rgba(8,12,20,0)_70%)] pointer-events-none -z-10" />
+      <div className="hidden dark:block absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(255,125,12,0.12),rgba(10,10,11,0)_70%)] pointer-events-none -z-10" />
       <div className="hidden dark:block absolute top-24 right-12 w-96 h-96 bg-[radial-gradient(circle,rgba(255,125,12,0.06),transparent_70%)] pointer-events-none -z-10 blur-3xl" />
       <div className="hidden dark:block absolute top-40 left-10 w-80 h-80 bg-[radial-gradient(circle,rgba(247,155,74,0.05),transparent_70%)] pointer-events-none -z-10 blur-3xl" />
 
@@ -26,7 +26,7 @@ export default function HeroSection() {
               className="absolute top-1/2 left-1/2 h-5 w-[320px] rounded-full bg-gradient-to-r from-transparent via-[#FF7D0C] to-transparent motion-safe:animate-chai-spin pointer-events-none"
               style={{ transform: "translate(-50%, -50%)" }}
             />
-            <div className="relative z-10 flex items-center space-x-2 px-4 py-1.5 rounded-full bg-neutral-100/90 dark:bg-[#0e1320]/95 border border-neutral-200/80 dark:border-white/10 text-xs font-semibold text-neutral-800 dark:text-neutral-200 backdrop-blur-md">
+            <div className="relative z-10 flex items-center space-x-2 px-4 py-1.5 rounded-full bg-neutral-100/90 dark:bg-[#141416]/95 border border-neutral-200/80 dark:border-white/10 text-xs font-semibold text-neutral-800 dark:text-neutral-200 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-[#FF7D0C] animate-pulse" />
               <span>CampusFind • The College Handover Protocol</span>
             </div>

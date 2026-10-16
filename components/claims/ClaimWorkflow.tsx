@@ -155,8 +155,8 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
             exit={{ opacity: 0, y: -6 }}
             className={`p-3.5 rounded-xl text-sm flex items-center gap-2.5 ${
               feedback.type === 'success'
-                ? 'bg-emerald-50 border border-emerald-200 text-emerald-800'
-                : 'bg-rose-50 border border-rose-200 text-rose-800'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300'
+                : 'bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-rose-800 dark:text-rose-300'
             }`}
           >
             {feedback.type === 'success' ? (
@@ -172,16 +172,16 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
       {/* Step 1: Proof */}
       <div className={`p-6 border rounded-2xl transition-all duration-300 ${
         currentStatus === 'PENDING' || currentStatus === 'CHAT_VERIFICATION' 
-          ? 'border-blue-500 bg-blue-50/20 shadow-sm' 
-          : 'bg-white border-gray-200'
+          ? 'border-[#ff7d0c]/70 bg-orange-50/20 dark:bg-orange-950/20 dark:border-[#ff7d0c]/70 shadow-sm' 
+          : 'bg-white dark:bg-[#18181c] border-gray-200 dark:border-white/10'
       }`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-base md:text-lg text-gray-900 flex items-center">
-            <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center mr-2.5">1</span>
+          <h3 className="font-bold text-base md:text-lg text-gray-900 dark:text-white flex items-center">
+            <span className="w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-950/80 text-[#ff7d0c] dark:text-[#f79b4a] border border-orange-200 dark:border-orange-500/30 text-xs font-bold flex items-center justify-center mr-2.5">1</span>
             Ownership Proof
           </h3>
           {currentStatus !== 'PENDING' && currentStatus !== 'CHAT_VERIFICATION' && (
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800/60">
               Submitted
             </span>
           )}
@@ -190,24 +190,24 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
         {currentStatus === 'PENDING' || currentStatus === 'CHAT_VERIFICATION' ? (
           role === 'CLAIMANT' ? (
             <div className="space-y-4">
-              <p className="text-xs md:text-sm text-gray-600">
+              <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300">
                 Provide details or upload a photo of a receipt, invoice, or identifying mark that proves this item belongs to you.
               </p>
               <textarea 
                 value={proofDescription} 
                 onChange={e => setProofDescription(e.target.value)} 
-                className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" 
+                className="w-full border border-gray-200 dark:border-white/10 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] bg-white dark:bg-[#141416] text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-neutral-500" 
                 rows={3}
                 placeholder="e.g. Serial number is SN-90218, has a small scratch near the power button..." 
               />
               
               <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2.5 rounded-xl cursor-pointer hover:bg-gray-50 text-xs md:text-sm font-medium transition-colors shadow-sm">
-                  <UploadCloud className="w-4 h-4 text-gray-500" /> Upload Photo / Receipt
+                <label className="flex items-center gap-2 bg-white dark:bg-[#141416] border border-gray-200 dark:border-white/10 px-4 py-2.5 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 text-xs md:text-sm font-medium transition-colors shadow-sm text-gray-700 dark:text-neutral-300">
+                  <UploadCloud className="w-4 h-4 text-gray-500 dark:text-neutral-400" /> Upload Photo / Receipt
                   <input type="file" className="hidden" onChange={handleUploadProof} />
                 </label>
                 {proofFile && (
-                  <span className="text-xs text-emerald-600 font-medium flex items-center">
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium flex items-center">
                     <CheckCircle2 className="w-4 h-4 mr-1" /> File ready
                   </span>
                 )}
@@ -218,20 +218,20 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                 whileTap={{ scale: 0.97 }}
                 onClick={submitProof} 
                 disabled={loading} 
-                className="bg-blue-600 text-white px-6 py-2.5 rounded-xl text-xs md:text-sm font-semibold hover:bg-blue-700 disabled:opacity-50 shadow-sm cursor-pointer"
+                className="btn-asym bg-[#FF7D0C] text-white px-6 py-2.5 text-xs md:text-sm font-semibold hover:bg-[#ea6c00] disabled:opacity-50 shadow-sm cursor-pointer"
               >
                 {loading ? <span className="flex items-center"><Loader2 className="w-4 h-4 animate-spin mr-1.5" /> Submitting...</span> : 'Submit Proof for Finder Review'}
               </motion.button>
             </div>
           ) : (
-            <p className="text-xs md:text-sm text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-400">
               Waiting for claimant to submit their ownership proof or invoice details.
             </p>
           )
         ) : (
           <div className="text-xs md:text-sm space-y-2">
-            <p className="font-semibold text-gray-800">Submitted Proof Details:</p>
-            <p className="text-gray-600 bg-gray-50 p-3 rounded-xl border border-gray-100 italic">
+            <p className="font-semibold text-gray-800 dark:text-slate-200">Submitted Proof Details:</p>
+            <p className="text-gray-600 dark:text-neutral-300 bg-gray-50 dark:bg-[#141416] p-3 rounded-xl border border-gray-100 dark:border-white/10 italic">
               "{claim.proofDescription || proofDescription}"
             </p>
             {(claim.proofFiles?.length > 0 || proofFile) && (
@@ -239,7 +239,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                 href={claim.proofFiles?.[0]?.url || proofFile?.url} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="text-blue-600 hover:underline flex items-center font-medium mt-1"
+                className="text-[#ff7d0c] dark:text-[#f79b4a] hover:underline flex items-center font-medium mt-1"
               >
                 View Attached Proof Document ↗
               </a>
@@ -251,21 +251,21 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
       {/* Step 2: Review */}
       <div className={`p-6 border rounded-2xl transition-all duration-300 ${
         currentStatus === 'PROOF_SUBMITTED' 
-          ? 'border-blue-500 bg-blue-50/20 shadow-sm' 
-          : 'bg-white border-gray-200'
+          ? 'border-[#ff7d0c]/70 bg-orange-50/20 dark:bg-orange-950/20 dark:border-[#ff7d0c]/70 shadow-sm' 
+          : 'bg-white dark:bg-[#18181c] border-gray-200 dark:border-white/10'
       }`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-base md:text-lg text-gray-900 flex items-center">
-            <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center mr-2.5">2</span>
+          <h3 className="font-bold text-base md:text-lg text-gray-900 dark:text-white flex items-center">
+            <span className="w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-950/80 text-[#ff7d0c] dark:text-[#f79b4a] border border-orange-200 dark:border-orange-500/30 text-xs font-bold flex items-center justify-center mr-2.5">2</span>
             Finder Review
           </h3>
           {['APPROVED', 'HANDOVER_PENDING', 'COMPLETED'].includes(currentStatus) && (
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800/60">
               Approved
             </span>
           )}
           {currentStatus === 'REJECTED' && (
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold border border-rose-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 font-semibold border border-rose-200 dark:border-rose-800/60">
               Rejected
             </span>
           )}
@@ -274,7 +274,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
         {currentStatus === 'PROOF_SUBMITTED' ? (
           role === 'FINDER' ? (
             <div className="space-y-4">
-              <p className="text-xs md:text-sm text-gray-600">
+              <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300">
                 Check the proof submitted above or chat with the claimant. If satisfied, click Approve to enable OTP handover.
               </p>
               <div className="flex gap-3">
@@ -299,16 +299,16 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
               </div>
             </div>
           ) : (
-            <p className="text-xs md:text-sm text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-400">
               Waiting for finder to review your proof. You can also send messages in private chat.
             </p>
           )
         ) : (
-          <p className="text-xs md:text-sm text-gray-600">
+          <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300">
             {['APPROVED', 'HANDOVER_PENDING', 'COMPLETED'].includes(currentStatus) ? (
-              <span className="text-emerald-700 font-medium">✓ Proof has been verified and approved by the finder.</span>
+              <span className="text-emerald-700 dark:text-emerald-400 font-medium">✓ Proof has been verified and approved by the finder.</span>
             ) : currentStatus === 'REJECTED' ? (
-              <span className="text-rose-600 font-medium">Proof was rejected.</span>
+              <span className="text-rose-600 dark:text-rose-400 font-medium">Proof was rejected.</span>
             ) : (
               'Waiting for proof submission...'
             )}
@@ -319,16 +319,16 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
       {/* Step 3: Handover */}
       <div className={`p-6 border rounded-2xl transition-all duration-300 ${
         ['APPROVED', 'HANDOVER_PENDING', 'COMPLETED'].includes(currentStatus) 
-          ? 'border-blue-500 bg-blue-50/20 shadow-sm' 
-          : 'bg-white border-gray-200'
+          ? 'border-[#ff7d0c]/70 bg-orange-50/20 dark:bg-orange-950/20 dark:border-[#ff7d0c]/70 shadow-sm' 
+          : 'bg-white dark:bg-[#18181c] border-gray-200 dark:border-white/10'
       }`}>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-base md:text-lg text-gray-900 flex items-center">
-            <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center mr-2.5">3</span>
+          <h3 className="font-bold text-base md:text-lg text-gray-900 dark:text-white flex items-center">
+            <span className="w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-950/80 text-[#ff7d0c] dark:text-[#f79b4a] border border-orange-200 dark:border-orange-500/30 text-xs font-bold flex items-center justify-center mr-2.5">3</span>
             Physical Handover & OTP
           </h3>
           {currentStatus === 'COMPLETED' && (
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800/60">
               Completed
             </span>
           )}
@@ -337,7 +337,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
         {currentStatus === 'APPROVED' ? (
           role === 'FINDER' ? (
             <div className="space-y-4">
-              <p className="text-xs md:text-sm text-gray-600">
+              <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300">
                 Coordinate a meeting spot in public. When you are meeting the claimant, click below to generate their 6-digit verification code.
               </p>
               <motion.button 
@@ -345,22 +345,22 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                 whileTap={{ scale: 0.96 }}
                 onClick={handleStartHandover} 
                 disabled={loading} 
-                className="bg-gray-900 text-white px-6 py-3 rounded-xl text-xs md:text-sm font-semibold hover:bg-gray-800 disabled:opacity-50 shadow-sm cursor-pointer"
+                className="btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white px-6 py-3 text-xs md:text-sm font-semibold disabled:opacity-50 shadow-sm cursor-pointer"
               >
                 {loading ? 'Starting...' : 'Start OTP Handover'}
               </motion.button>
             </div>
           ) : (
-            <p className="text-xs md:text-sm text-gray-600">
+            <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300">
               Proof approved! Coordinate a campus meeting spot in chat. The finder will tap "Start OTP Handover" when meeting in person.
             </p>
           )
         ) : currentStatus === 'HANDOVER_PENDING' ? (
           role === 'FINDER' ? (
             <div className="space-y-4">
-              <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center">
-                <KeyRound className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                <p className="text-xs md:text-sm text-gray-600 mb-3">
+              <div className="bg-white dark:bg-[#141416] border-2 border-dashed border-gray-200 dark:border-white/10 rounded-2xl p-6 text-center">
+                <KeyRound className="w-8 h-8 text-[#ff7d0c] dark:text-[#f79b4a] mx-auto mb-2" />
+                <p className="text-xs md:text-sm text-gray-600 dark:text-neutral-300 mb-3">
                   Ask the claimant to read out or show the 6-digit OTP displayed on their screen:
                 </p>
                 <input 
@@ -368,7 +368,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                   maxLength={6} 
                   value={otp} 
                   onChange={e => setOtp(e.target.value.replace(/\D/g, ''))} 
-                  className="w-48 text-center tracking-widest text-3xl font-mono font-black border-2 border-blue-400 rounded-xl p-3 mx-auto block bg-blue-50/30 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                  className="w-48 text-center tracking-widest text-3xl font-mono font-black border-2 border-[#ff7d0c]/50 dark:border-[#f79b4a]/60 rounded-xl p-3 mx-auto block bg-orange-50/30 dark:bg-orange-950/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/40" 
                   placeholder="------" 
                 />
               </div>
@@ -377,25 +377,25 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                 whileTap={{ scale: 0.97 }}
                 onClick={handleVerifyOtp} 
                 disabled={loading || otp.length !== 6} 
-                className="w-full bg-blue-600 text-white px-6 py-3.5 rounded-xl text-sm font-bold hover:bg-blue-700 disabled:opacity-50 shadow-md cursor-pointer"
+                className="w-full btn-asym bg-[#FF7D0C] hover:bg-[#ea6c00] text-white px-6 py-3.5 text-sm font-bold disabled:opacity-50 shadow-md cursor-pointer"
               >
                 {loading ? <span className="flex items-center justify-center"><Loader2 className="w-5 h-5 animate-spin mr-2" /> Verifying OTP...</span> : 'Verify OTP & Complete Return'}
               </motion.button>
             </div>
           ) : (
-            <div className="text-center bg-white border border-blue-100 rounded-2xl p-8 shadow-sm">
-              <ShieldAlert className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Your One-Time Handover Code</p>
-              <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 py-4 px-6 rounded-2xl mb-3 border border-blue-100 inline-block shadow-inner">
-                <span className="text-4xl font-mono font-black tracking-widest text-blue-900">
+            <div className="text-center bg-white dark:bg-[#141416] border border-orange-100 dark:border-white/10 rounded-2xl p-8 shadow-sm">
+              <ShieldAlert className="w-12 h-12 text-[#ff7d0c] dark:text-[#f79b4a] mx-auto mb-3" />
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-neutral-400 mb-1">Your One-Time Handover Code</p>
+              <div className="bg-orange-50/60 dark:bg-orange-950/30 py-4 px-6 rounded-2xl mb-3 border border-orange-200 dark:border-orange-500/30 inline-block shadow-inner">
+                <span className="text-4xl font-mono font-black tracking-widest text-orange-950 dark:text-[#f79b4a]">
                   {claimantOtp || (
-                    <span className="flex items-center text-sm font-medium text-blue-600">
+                    <span className="flex items-center text-sm font-medium text-[#ff7d0c] dark:text-[#f79b4a]">
                       <Loader2 className="w-4 h-4 animate-spin mr-2" /> Fetching OTP...
                     </span>
                   )}
                 </span>
               </div>
-              <p className="text-xs text-gray-500 max-w-sm mx-auto">
+              <p className="text-xs text-gray-500 dark:text-neutral-400 max-w-sm mx-auto">
                 Show this 6-digit code to the finder in person once they show you the item. Handover is recorded permanently upon verification.
               </p>
             </div>
@@ -403,12 +403,12 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
         ) : (
           <div className="text-xs md:text-sm">
             {currentStatus === 'COMPLETED' ? (
-              <div className="flex items-center text-emerald-700 bg-emerald-50 p-4 rounded-xl border border-emerald-100 font-semibold">
+              <div className="flex items-center text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 p-4 rounded-xl border border-emerald-100 dark:border-emerald-800/60 font-semibold">
                 <CheckCircle2 className="w-5 h-5 mr-2 shrink-0 text-emerald-600" />
                 <span>Handover Completed! This item has been returned and marked RESOLVED.</span>
               </div>
             ) : (
-              <span className="text-gray-500">Handover will unlock after ownership proof is verified.</span>
+              <span className="text-gray-500 dark:text-neutral-400">Handover will unlock after ownership proof is verified.</span>
             )}
           </div>
         )}

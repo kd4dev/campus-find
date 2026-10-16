@@ -6,20 +6,20 @@ export default function CampusContrast() {
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto">
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 dark:shadow-[0_0_15px_-3px_rgba(59,130,246,0.2)] backdrop-blur-md">
+        <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-[#f79b4a] border border-orange-500/20 backdrop-blur-md">
           The Campus Problem Solved
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-4 tracking-tight">
           Why campus group chats fail.
         </h2>
-        <p className="text-slate-600 dark:text-slate-300/90 text-base sm:text-lg mt-3 leading-relaxed">
+        <p className="text-slate-600 dark:text-neutral-300/90 text-base sm:text-lg mt-3 leading-relaxed">
           Posting lost keys or electronics in 500-member WhatsApp groups leads to doxxing, false claims, and stolen belongings. CampusFind replaces the chaos with an engineered handover protocol.
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
         {/* The Chaos of Group Chats */}
-        <div className="rounded-3xl p-7 sm:p-9 bg-rose-50/50 dark:bg-gradient-to-b dark:from-rose-950/30 dark:via-[#0e1422] dark:to-[#080d16] border border-rose-200/80 dark:border-rose-900/50 dark:border-t-rose-800/60 dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7),0_0_30px_-5px_rgba(244,63,94,0.15)] flex flex-col justify-between relative overflow-hidden transition-all">
+        <div className="rounded-3xl p-7 sm:p-9 bg-rose-50/50 dark:bg-[#141416] border border-rose-200/80 dark:border-rose-900/30 dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7),0_0_30px_-5px_rgba(244,63,94,0.12)] flex flex-col justify-between relative overflow-hidden transition-all">
           <div className="absolute top-0 right-0 w-32 h-32 bg-rose-400/10 dark:bg-rose-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <div>
@@ -79,7 +79,7 @@ export default function CampusContrast() {
         </div>
 
         {/* The CampusFind Protocol */}
-        <div className="rounded-3xl p-7 sm:p-9 bg-emerald-50/50 dark:bg-gradient-to-b dark:from-emerald-950/30 dark:via-[#0e1422] dark:to-[#080d16] border border-emerald-200/80 dark:border-emerald-800/50 dark:border-t-emerald-500/60 dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7),0_0_40px_-5px_rgba(16,185,129,0.2)] flex flex-col justify-between relative overflow-hidden transition-all shadow-lg shadow-emerald-500/5">
+        <div className="rounded-3xl p-7 sm:p-9 bg-emerald-50/50 dark:bg-[#141416] border border-emerald-200/80 dark:border-emerald-800/40 dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7),0_0_40px_-5px_rgba(16,185,129,0.15)] flex flex-col justify-between relative overflow-hidden transition-all shadow-lg shadow-emerald-500/5">
           <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-400/10 dark:bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <div>

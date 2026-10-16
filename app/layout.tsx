@@ -40,7 +40,7 @@ export default function RootLayout({
             }}
           />
         </head>
-        <body className={`${inter.className} min-h-screen bg-[#f8fafc] text-slate-900 dark:bg-[#090d16] dark:text-slate-100 transition-colors duration-200`}>
+        <body className={`${inter.className} min-h-screen bg-[#f8fafc] text-slate-900 dark:bg-[#0a0a0b] dark:text-[#f4f4f5] transition-colors duration-200`}>
           <ThemeProvider>
             <Suspense fallback={null}>
               <NavigationProgress />
