@@ -57,15 +57,25 @@ export async function POST(req: Request) {
     const name = `${first_name || ''} ${last_name || ''}`.trim();
 
     try {
-      await User.findOneAndUpdate(
-        { clerkUserId: id },
-        {
-          name,
-          email,
-          avatar: image_url,
-        },
-        { upsert: true, new: true }
-      );
+      let dbUser = await User.findOne({
+        $or: [{ clerkUserId: id }, ...(email ? [{ email }] : [])]
+      });
+
+      if (dbUser) {
+        dbUser.clerkUserId = id;
+        dbUser.name = name || dbUser.name || 'Student';
+        if (email) dbUser.email = email;
+        if (image_url) dbUser.avatar = image_url;
+        await dbUser.save();
+      } else {
+        await User.create({
+          clerkUserId: id,
+          name: name || 'Student',
+          email: email || `${id}@student.college.edu`,
+          avatar: image_url || '',
+          role: 'USER'
+        });
+      }
     } catch (err) {
       console.error('Error syncing user to DB:', err);
       return new Response('Error syncing user', { status: 500 });

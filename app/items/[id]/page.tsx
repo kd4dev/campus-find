@@ -13,7 +13,12 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
   const item = await getItemById(resolvedParams.id);
   if (!item) notFound();
 
-  const currentUser = await getCurrentDbUser();
+  let currentUser = null;
+  try {
+    currentUser = await getCurrentDbUser();
+  } catch (err) {
+    console.error("Error fetching current user in item details:", err);
+  }
   const rawItemUserId = (item.userId?._id || item.userId)?.toString();
   const currentUserId = currentUser?._id?.toString();
   const isOwner = Boolean(currentUserId && rawItemUserId && currentUserId === rawItemUserId);

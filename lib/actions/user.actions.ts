@@ -5,42 +5,74 @@ import connectToDatabase from "../mongodb";
 import { User } from "../models/User";
 
 export async function syncCurrentUser() {
-  const user = await currentUser();
-  if (!user) return null;
+  try {
+    const user = await currentUser();
+    if (!user) return null;
 
-  await connectToDatabase();
+    await connectToDatabase();
 
-  const primaryEmail = user.emailAddresses?.[0]?.emailAddress || `${user.id}@student.college.edu`;
-  const name = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.username || primaryEmail.split('@')[0] || "College Student";
+    const primaryEmail = user.emailAddresses?.[0]?.emailAddress || `${user.id}@student.college.edu`;
+    const name =
+      `${user.firstName || ''} ${user.lastName || ''}`.trim() ||
+      user.username ||
+      primaryEmail.split('@')[0] ||
+      "College Student";
 
-  const dbUser = await User.findOneAndUpdate(
-    { clerkUserId: user.id },
-    {
-      $set: {
+    // Check if user already exists by clerkUserId OR email
+    let dbUser = await User.findOne({
+      $or: [
+        { clerkUserId: user.id },
+        { email: primaryEmail }
+      ]
+    });
+
+    if (dbUser) {
+      dbUser.clerkUserId = user.id;
+      dbUser.name = name;
+      dbUser.email = primaryEmail;
+      if (user.imageUrl) dbUser.avatar = user.imageUrl;
+      await dbUser.save();
+    } else {
+      dbUser = await User.create({
+        clerkUserId: user.id,
         name,
         email: primaryEmail,
         avatar: user.imageUrl || "",
-      },
-      $setOnInsert: {
         role: "USER"
-      }
-    },
-    { upsert: true, new: true }
-  );
+      });
+    }
 
-  return JSON.parse(JSON.stringify(dbUser));
+    return JSON.parse(JSON.stringify(dbUser));
+  } catch (error) {
+    console.error("Error in syncCurrentUser:", error);
+    return null;
+  }
 }
 
 export async function getCurrentDbUser() {
-  const user = await currentUser();
-  if (!user) return null;
+  try {
+    const user = await currentUser();
+    if (!user) return null;
 
-  await connectToDatabase();
-  const dbUser = await User.findOne({ clerkUserId: user.id });
-  
-  if (!dbUser) {
-    return await syncCurrentUser();
+    await connectToDatabase();
+
+    const primaryEmail = user.emailAddresses?.[0]?.emailAddress;
+
+    // Check for user by clerkUserId or email
+    let dbUser = await User.findOne({
+      $or: [
+        { clerkUserId: user.id },
+        ...(primaryEmail ? [{ email: primaryEmail }] : [])
+      ]
+    });
+
+    if (!dbUser || dbUser.clerkUserId !== user.id) {
+      return await syncCurrentUser();
+    }
+
+    return JSON.parse(JSON.stringify(dbUser));
+  } catch (error) {
+    console.error("Error in getCurrentDbUser:", error);
+    return null;
   }
-  
-  return JSON.parse(JSON.stringify(dbUser));
 }
