@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useAuth, UserButton } from "@clerk/nextjs";
-import { Menu, X, Search, PlusCircle, Bell, MessageSquare, LayoutDashboard } from "lucide-react";
+import { Menu, X, Search, PlusCircle, Bell, MessageSquare, LayoutDashboard, ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -45,57 +45,43 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-[#080c14]/90 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800/80 dark:border-t dark:border-t-blue-500/20 z-50 transition-colors shadow-sm dark:shadow-[0_4px_30px_-5px_rgba(0,0,0,0.7)]">
+    <nav className="fixed top-0 w-full bg-white/85 dark:bg-[#0a0e17]/90 backdrop-blur-md border-b border-neutral-200/80 dark:border-white/10 z-50 transition-colors shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
-          {/* Brand Logo & Emblem Mark */}
+          {/* ChaiCode-Style Brand Logo: Clean Monochrome + Signature #FF7D0C Accent */}
           <div className="flex items-center space-x-6">
             <Link 
               href="/" 
-              className="flex items-center space-x-3 group cursor-pointer"
+              className="flex items-center space-x-2.5 group cursor-pointer"
             >
-              {/* Bespoke CampusFind Logo Emblem */}
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-[1.5px] shadow-[0_2px_10px_rgba(59,130,246,0.3)] dark:shadow-[0_0_20px_-3px_rgba(59,130,246,0.6)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.75)] transition-all duration-300">
-                <div className="w-full h-full rounded-[10px] bg-white dark:bg-[#0b1120] flex items-center justify-center relative overflow-hidden">
-                  {/* Subtle interior gradient sweep */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 dark:from-blue-500/25 dark:to-cyan-400/20" />
-                  
-                  {/* Custom Modern Beacon Vector Icon */}
-                  <svg 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    className="w-5 h-5 text-blue-600 dark:text-cyan-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-6deg] drop-shadow-sm"
-                  >
-                    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-                    <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                    <circle cx="11" cy="11" r="2.5" fill="currentColor" className="opacity-90 animate-pulse" />
-                    <path d="M19 4L19.8 6.2L22 7L19.8 7.8L19 10L18.2 7.8L16 7L18.2 6.2Z" fill="url(#cf-sparkle-grad)" />
-                    <defs>
-                      <linearGradient id="cf-sparkle-grad" x1="16" y1="4" x2="22" y2="10" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#38BDF8" />
-                        <stop offset="1" stopColor="#818CF8" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </div>
+              {/* Minimalist Rocking Search Beacon Icon */}
+              <motion.div
+                className="relative flex items-center justify-center size-9 rounded-xl border border-neutral-200/90 dark:border-white/10 bg-neutral-100/70 dark:bg-white/[0.04] text-neutral-900 dark:text-white transition-all group-hover:border-[#FF7D0C]/50"
+                animate={{ rotate: [-2.5, 2.5, -2.5] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-neutral-900 dark:text-white transition-transform group-hover:scale-105">
+                  <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                  <path d="M16.5 16.5L20.5 20.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                  {/* Signature ChaiCode Orange Beacon Dot */}
+                  <circle cx="11" cy="11" r="2.5" fill="#FF7D0C" className="dark:fill-[#f79b4a]" />
+                </svg>
+              </motion.div>
 
-              {/* Brand Typography with Network Beacon */}
-              <div className="flex flex-col">
-                <div className="flex items-center space-x-1.5">
-                  <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
-                    Campus<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300">Find</span>
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)] inline-block" title="Live Campus Network Active" />
-                </div>
-                <span className="hidden xl:block text-[9px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300 -mt-0.5">
-                  Verified Handover
+              {/* Wordmark with Signature ChaiCode Bouncing Dot */}
+              <div className="flex items-center space-x-1">
+                <span className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                  CampusFind
                 </span>
+                <span 
+                  className="w-2 h-2 rounded-full bg-[#FF7D0C] dark:bg-[#f79b4a] inline-block motion-safe:animate-chai-bounce"
+                  title="Campus Live Network"
+                />
               </div>
             </Link>
             
-            {/* Desktop Navigation Links with Aceternity Animated Active Pill */}
+            {/* Desktop Navigation Links with Warm Chai Pill */}
             <div className="hidden md:flex items-center space-x-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -105,15 +91,15 @@ export default function Navbar() {
                     href={link.href}
                     className={`relative px-4 py-1.5 rounded-full text-xs font-semibold flex items-center transition-colors z-10 ${
                       isActive
-                        ? "text-blue-700 dark:text-blue-300"
-                        : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/50"
+                        ? "text-orange-600 dark:text-[#f79b4a]"
+                        : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100/70 dark:hover:bg-white/[0.05]"
                     }`}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="navbar-active-pill"
                         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                        className="absolute inset-0 rounded-full bg-blue-50/90 dark:bg-blue-950/70 border border-blue-200/80 dark:border-blue-800/70 dark:shadow-[0_0_15px_-3px_rgba(59,130,246,0.35)] -z-10"
+                        className="absolute inset-0 rounded-full bg-orange-500/10 dark:bg-orange-500/15 border border-orange-500/25 dark:border-orange-400/20 shadow-xs -z-10"
                       />
                     )}
                     {link.icon}
@@ -133,8 +119,8 @@ export default function Navbar() {
               <>
                 <Link 
                   href="/dashboard" 
-                  className={`p-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/70 transition-colors ${
-                    pathname === '/dashboard' ? 'bg-gray-100 dark:bg-slate-800/80 dark:border dark:border-slate-700/60 text-gray-900 dark:text-white' : ''
+                  className={`p-2 rounded-xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/[0.06] transition-colors ${
+                    pathname === '/dashboard' ? 'bg-neutral-100 dark:bg-white/[0.08] dark:border dark:border-white/10 text-neutral-900 dark:text-white' : ''
                   }`}
                   title="Dashboard"
                 >
@@ -142,8 +128,8 @@ export default function Navbar() {
                 </Link>
                 <Link 
                   href="/messages" 
-                  className={`p-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/70 transition-colors ${
-                    pathname.startsWith('/messages') ? 'bg-gray-100 dark:bg-slate-800/80 dark:border dark:border-slate-700/60 text-gray-900 dark:text-white' : ''
+                  className={`p-2 rounded-xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/[0.06] transition-colors ${
+                    pathname.startsWith('/messages') ? 'bg-neutral-100 dark:bg-white/[0.08] dark:border dark:border-white/10 text-neutral-900 dark:text-white' : ''
                   }`}
                   title="Messages"
                 >
@@ -151,17 +137,17 @@ export default function Navbar() {
                 </Link>
                 <Link 
                   href="/notifications" 
-                  className={`p-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/70 transition-colors relative ${
-                    pathname === '/notifications' ? 'bg-gray-100 dark:bg-slate-800/80 dark:border dark:border-slate-700/60 text-gray-900 dark:text-white' : ''
+                  className={`p-2 rounded-xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/[0.06] transition-colors relative ${
+                    pathname === '/notifications' ? 'bg-neutral-100 dark:bg-white/[0.08] dark:border dark:border-white/10 text-neutral-900 dark:text-white' : ''
                   }`}
                   title="Notifications"
                 >
                   <Bell className="w-5 h-5" />
                   {unreadCount > 0 && (
-                    <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-white dark:ring-slate-900 animate-pulse" />
+                    <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#FF7D0C] rounded-full ring-2 ring-white dark:ring-[#0a0e17] animate-pulse" />
                   )}
                 </Link>
-                <div className="pl-2 border-l border-gray-200 dark:border-slate-800">
+                <div className="pl-2 border-l border-neutral-200 dark:border-white/10">
                   <UserButton />
                 </div>
               </>
@@ -169,18 +155,16 @@ export default function Navbar() {
               <>
                 <Link 
                   href="/sign-in" 
-                  className="text-gray-700 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800/70 transition-colors"
+                  className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white text-xs font-semibold px-3.5 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link 
                   href="/sign-up" 
-                  className="relative inline-flex items-center justify-center p-[1px] overflow-hidden rounded-full font-medium transition-all hover:scale-105 active:scale-95 shadow-sm dark:shadow-[0_0_20px_-3px_rgba(59,130,246,0.5)] group cursor-pointer"
+                  className="btn-asym bg-neutral-900 text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-neutral-200 text-xs px-4 py-2 font-bold transition-all shadow-sm flex items-center gap-1.5 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-400 rounded-full group-hover:opacity-90" />
-                  <span className="relative px-4 py-1.5 rounded-full bg-slate-900 dark:bg-blue-600 text-white text-xs font-bold transition-all flex items-center">
-                    Sign Up
-                  </span>
+                  <span>Sign Up</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 -ml-0.5" />
                 </Link>
               </>
             )}

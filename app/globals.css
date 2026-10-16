@@ -7,6 +7,26 @@
   --animate-shimmer: shimmer 2.5s linear infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  --animate-chai-spin: chai-spin 4s linear infinite;
+  --animate-chai-bounce: chai-bounce 2s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+
+@keyframes chai-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes chai-bounce {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes blob {
@@ -112,6 +132,29 @@ body {
 }
 .btn-tap:active {
   transform: scale(0.96);
+}
+
+/* ChaiCode / ChaiUI Signatures */
+.btn-asym {
+  border-radius: 4px 18px 4px 18px;
+}
+
+.btn-asym-mirror {
+  border-radius: 18px 4px 18px 4px;
+}
+
+.card-chai {
+  border: 1px solid rgba(255, 247, 237, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+}
+
+.highlight {
+  color: #ff7d0c;
+}
+
+.dark .highlight {
+  color: #f79b4a;
 }
 
 /* Accessibility: respect user preference for reduced motion */
