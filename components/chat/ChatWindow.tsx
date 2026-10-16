@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Send, Loader2 } from "lucide-react";
 import { format } from "date-fns";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ChatWindow({ conversationId, currentUserId }: { conversationId: string, currentUserId: string }) {
   const [messages, setMessages] = useState<any[]>([]);
@@ -11,7 +12,7 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
   const [sending, setSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
       const res = await fetch(`/api/messages?conversationId=${conversationId}`);
       if (res.ok) {
@@ -23,35 +24,41 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
     } finally {
       setLoading(false);
     }
-  };
+  }, [conversationId]);
 
   useEffect(() => {
     fetchMessages();
     
-    // Polling every 5 seconds
-    const interval = setInterval(fetchMessages, 5000);
+    // Poll every 2.5 seconds when document is visible
+    const interval = setInterval(() => {
+      if (document.visibilityState === "visible") {
+        fetchMessages();
+      }
+    }, 2500);
     return () => clearInterval(interval);
-  }, [conversationId]);
+  }, [conversationId, fetchMessages]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages.length]);
 
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim() || sending) return;
+    const content = newMessage.trim();
+    if (!content || sending) return;
     
-    const content = newMessage;
     setNewMessage("");
     setSending(true);
     
-    // Optimistic update
+    // Instant optimistic update
+    const tempId = `temp-${Date.now()}`;
     const tempMessage = {
-      _id: Date.now().toString(),
+      _id: tempId,
       content,
       senderId: { _id: currentUserId },
       createdAt: new Date().toISOString()
     };
+    
     setMessages(prev => [...prev, tempMessage]);
     
     try {
@@ -61,12 +68,14 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
         body: JSON.stringify({ conversationId, content })
       });
       
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) throw new Error("Failed to send message");
+      const savedMessage = await res.json();
       
-      // Real fetch to get the actual populated message
-      await fetchMessages();
+      // Directly replace temp message with populated saved message
+      setMessages(prev => prev.map(m => m._id === tempId ? savedMessage : m));
     } catch (error) {
-      alert("Failed to send message");
+      // Rollback optimistic message on error
+      setMessages(prev => prev.filter(m => m._id !== tempId));
       setNewMessage(content); // restore input
     } finally {
       setSending(false);
@@ -74,52 +83,77 @@ export default function ChatWindow({ conversationId, currentUserId }: { conversa
   };
 
   if (loading) {
-    return <div className="flex-1 flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-gray-400" /></div>;
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center p-8 space-y-2">
+        <Loader2 className="w-7 h-7 animate-spin text-blue-600" />
+        <span className="text-xs text-gray-400">Loading conversation...</span>
+      </div>
+    );
   }
 
   return (
     <>
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/50">
         {messages.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-gray-400 text-sm">
-            No messages yet. Send a message to start verifying details.
+          <div className="h-full flex flex-col items-center justify-center text-gray-400 text-sm space-y-2 p-6 text-center">
+            <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center font-bold">
+              💬
+            </div>
+            <p className="font-medium text-gray-600">No messages yet</p>
+            <p className="text-xs text-gray-400 max-w-xs">
+              Say hello and ask specific verification questions about the item to verify ownership safely.
+            </p>
           </div>
         ) : (
-          messages.map((msg, i) => {
-            const senderIdStr = (msg.senderId?._id || msg.senderId)?.toString();
-            const isMe = senderIdStr === currentUserId?.toString();
-            return (
-              <div key={msg._id || i} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[75%] rounded-2xl px-4 py-2 ${isMe ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-100 text-gray-800 rounded-bl-none'}`}>
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-                  <p className={`text-[10px] mt-1 text-right ${isMe ? 'text-blue-200' : 'text-gray-400'}`}>
-                    {msg.createdAt ? format(new Date(msg.createdAt), 'h:mm a') : '...'}
-                  </p>
-                </div>
-              </div>
-            );
-          })
+          <AnimatePresence initial={false}>
+            {messages.map((msg, i) => {
+              const senderIdStr = (msg.senderId?._id || msg.senderId)?.toString();
+              const isMe = senderIdStr === currentUserId?.toString();
+              return (
+                <motion.div
+                  key={msg._id || i}
+                  initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.18 }}
+                  className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 shadow-sm ${
+                    isMe 
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-br-none' 
+                      : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
+                  }`}>
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                    <p className={`text-[10px] mt-1 text-right ${isMe ? 'text-blue-200' : 'text-gray-400'}`}>
+                      {msg.createdAt ? format(new Date(msg.createdAt), 'h:mm a') : 'Sending...'}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         )}
         <div ref={messagesEndRef} />
       </div>
 
       <div className="p-3 bg-white border-t">
-        <form onSubmit={sendMessage} className="flex gap-2">
+        <form onSubmit={sendMessage} className="flex items-center gap-2">
           <input 
             type="text" 
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type your message..."
-            className="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Type a secure message..."
+            className="flex-1 border border-gray-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50/50"
             disabled={sending}
           />
-          <button 
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
             type="submit" 
             disabled={!newMessage.trim() || sending}
-            className="bg-blue-600 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center disabled:opacity-50 hover:bg-blue-700 transition-colors"
+            className="bg-blue-600 text-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center disabled:opacity-40 hover:bg-blue-700 transition-colors shadow-sm cursor-pointer"
           >
-            {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5 ml-0.5" />}
-          </button>
+            {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 ml-0.5" />}
+          </motion.button>
         </form>
       </div>
     </>

@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Loader2, UploadCloud, X } from "lucide-react";
+import { Loader2, UploadCloud, X, AlertCircle } from "lucide-react";
 import { createItem } from "@/lib/actions/item.actions";
+import { motion } from "framer-motion";
 
 const categories = [
   "Electronics", "Wallet", "ID Card", "Documents", "Bag", 
@@ -32,6 +33,7 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
   const [images, setImages] = useState<{url: string, publicId: string}[]>([]);
   const [uploading, setUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,6 +42,7 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     setUploading(true);
+    setErrorMessage(null);
     
     try {
       const formData = new FormData();
@@ -55,7 +58,8 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
         setImages([...images, { url: data.secure_url, publicId: data.public_id }]);
       }
     } catch (error) {
-      console.error("Upload failed", error); alert("Upload failed: Check console and your Cloudinary Environment Variables.");
+      console.error("Upload failed", error);
+      setErrorMessage("Image upload failed. Please verify image size or format.");
     } finally {
       setUploading(false);
     }
@@ -67,6 +71,7 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
+    setErrorMessage(null);
     try {
       const itemData = {
         ...values,
@@ -76,16 +81,21 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
       };
       const newItem = await createItem(itemData);
       router.push(`/items/${newItem._id}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to create item", error);
-      alert("Something went wrong");
-    } finally {
+      setErrorMessage(error.message || "Something went wrong while publishing your report.");
       setIsSubmitting(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {errorMessage && (
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-sm flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium mb-1">Item Name *</label>
@@ -167,14 +177,22 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
         </div>
       </div>
 
-      <button 
+      <motion.button 
+        whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
+        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
         type="submit" 
         disabled={isSubmitting} 
-        className="w-full bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 disabled:opacity-50 flex justify-center items-center"
+        className="cursor-pointer w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 flex justify-center items-center shadow-md transition-all"
       >
-        {isSubmitting && <Loader2 className="w-5 h-5 animate-spin mr-2" />}
-        Submit Report
-      </button>
+        {isSubmitting ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin mr-2" />
+            <span>Publishing to Campus Board...</span>
+          </>
+        ) : (
+          `Submit ${type === 'LOST' ? 'Lost' : 'Found'} Report`
+        )}
+      </motion.button>
     </form>
   );
 }

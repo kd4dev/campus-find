@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Suspense } from "react";
 import Navbar from "@/components/ui/Navbar";
+import NavigationProgress from "@/components/ui/NavigationProgress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +22,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <Suspense fallback={null}>
+            <NavigationProgress />
+          </Suspense>
           <Navbar />
-          <main className="min-h-screen  pt-16">
+          <main className="min-h-screen pt-16">
             {children}
           </main>
         </body>
