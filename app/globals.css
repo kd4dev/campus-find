@@ -159,6 +159,17 @@ body {
   color: #f79b4a;
 }
 
+/* ChaiCode Background Vector Inversion Rules */
+.chai-bg-invert {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
+.dark .chai-bg-invert {
+  filter: invert(0%);
+  -webkit-filter: invert(0%);
+}
+
 /* Accessibility: respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

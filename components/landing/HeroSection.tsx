@@ -7,15 +7,6 @@ import LiveProductConsole from "@/components/landing/LiveProductConsole";
 export default function HeroSection() {
   return (
     <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 px-4 overflow-hidden">
-      {/* Light mode ChaiCode signature ambient warm gradient */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-orange-50/60 via-orange-100/25 to-transparent dark:hidden pointer-events-none -z-10" />
-      <div className="absolute top-10 right-10 w-96 h-96 bg-[radial-gradient(circle,rgba(255,125,12,0.06),transparent_70%)] dark:hidden pointer-events-none -z-10 blur-3xl" />
-
-      {/* Dark mode atmospheric illumination with warm subtle depth */}
-      <div className="hidden dark:block absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(255,125,12,0.12),rgba(10,10,11,0)_70%)] pointer-events-none -z-10" />
-      <div className="hidden dark:block absolute top-24 right-12 w-96 h-96 bg-[radial-gradient(circle,rgba(255,125,12,0.06),transparent_70%)] pointer-events-none -z-10 blur-3xl" />
-      <div className="hidden dark:block absolute top-40 left-10 w-80 h-80 bg-[radial-gradient(circle,rgba(247,155,74,0.05),transparent_70%)] pointer-events-none -z-10 blur-3xl" />
-
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Column: Authoritative Editorial Copy & Actions */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">

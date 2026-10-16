@@ -8,7 +8,7 @@ import { ShieldCheck, Lock, CheckCircle2, Heart } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-[#0a0a0b] text-neutral-900 dark:text-neutral-100 relative overflow-hidden transition-colors duration-200">
+    <div className="flex flex-col min-h-screen bg-transparent text-neutral-900 dark:text-neutral-100 relative overflow-hidden transition-colors duration-200">
       {/* 1. Asymmetric Hero with Live Interactive Console */}
       <HeroSection />
 

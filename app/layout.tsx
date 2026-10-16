@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Navbar from "@/components/ui/Navbar";
 import NavigationProgress from "@/components/ui/NavigationProgress";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import BackgroundEnvironment from "@/components/ui/BackgroundEnvironment";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,13 +41,14 @@ export default function RootLayout({
             }}
           />
         </head>
-        <body className={`${inter.className} min-h-screen bg-white text-neutral-900 dark:bg-[#0a0a0b] dark:text-[#fafafa] transition-colors duration-200`}>
+        <body className={`${inter.className} min-h-screen bg-white text-neutral-900 dark:bg-[#0a0a0b] dark:text-[#fafafa] transition-colors duration-200 relative overflow-x-hidden selection:bg-orange-100 dark:selection:bg-neutral-800`}>
           <ThemeProvider>
+            <BackgroundEnvironment />
             <Suspense fallback={null}>
               <NavigationProgress />
             </Suspense>
             <Navbar />
-            <main className="min-h-screen pt-16">
+            <main className="min-h-screen pt-16 relative">
               {children}
             </main>
           </ThemeProvider>
