@@ -39,44 +39,92 @@ export default function Navbar() {
   }, [isSignedIn]);
 
   const navLinks = [
-    { href: "/items", label: "Find Items", icon: <Search className="w-4 h-4 mr-1.5" /> },
-    { href: "/items/lost/new", label: "Report Lost", icon: <PlusCircle className="w-4 h-4 mr-1.5" /> },
-    { href: "/items/found/new", label: "Report Found", icon: <PlusCircle className="w-4 h-4 mr-1.5" /> },
+    { href: "/items", label: "Find Items", icon: <Search className="w-3.5 h-3.5 mr-1.5" /> },
+    { href: "/items/lost/new", label: "Report Lost", icon: <PlusCircle className="w-3.5 h-3.5 mr-1.5" /> },
+    { href: "/items/found/new", label: "Report Found", icon: <PlusCircle className="w-3.5 h-3.5 mr-1.5" /> },
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-[#080c14]/90 backdrop-blur-md border-b border-gray-200/80 dark:border-slate-800/80 z-50 transition-colors shadow-sm dark:shadow-[0_4px_25px_-5px_rgba(0,0,0,0.6)]">
+    <nav className="fixed top-0 w-full bg-white/80 dark:bg-[#080c14]/90 backdrop-blur-xl border-b border-gray-200/80 dark:border-slate-800/80 dark:border-t dark:border-t-blue-500/20 z-50 transition-colors shadow-sm dark:shadow-[0_4px_30px_-5px_rgba(0,0,0,0.7)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
+          
+          {/* Brand Logo & Emblem Mark */}
           <div className="flex items-center space-x-6">
             <Link 
               href="/" 
-              className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-cyan-300 tracking-tight dark:drop-shadow-[0_0_16px_rgba(99,102,241,0.35)]"
+              className="flex items-center space-x-3 group cursor-pointer"
             >
-              CampusFind
+              {/* Bespoke CampusFind Logo Emblem */}
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-[1.5px] shadow-[0_2px_10px_rgba(59,130,246,0.3)] dark:shadow-[0_0_20px_-3px_rgba(59,130,246,0.6)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.75)] transition-all duration-300">
+                <div className="w-full h-full rounded-[10px] bg-white dark:bg-[#0b1120] flex items-center justify-center relative overflow-hidden">
+                  {/* Subtle interior gradient sweep */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10 dark:from-blue-500/25 dark:to-cyan-400/20" />
+                  
+                  {/* Custom Modern Beacon Vector Icon */}
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    className="w-5 h-5 text-blue-600 dark:text-cyan-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-6deg] drop-shadow-sm"
+                  >
+                    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                    <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                    <circle cx="11" cy="11" r="2.5" fill="currentColor" className="opacity-90 animate-pulse" />
+                    <path d="M19 4L19.8 6.2L22 7L19.8 7.8L19 10L18.2 7.8L16 7L18.2 6.2Z" fill="url(#cf-sparkle-grad)" />
+                    <defs>
+                      <linearGradient id="cf-sparkle-grad" x1="16" y1="4" x2="22" y2="10" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#38BDF8" />
+                        <stop offset="1" stopColor="#818CF8" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Brand Typography with Network Beacon */}
+              <div className="flex flex-col">
+                <div className="flex items-center space-x-1.5">
+                  <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+                    Campus<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300">Find</span>
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.9)] inline-block" title="Live Campus Network Active" />
+                </div>
+                <span className="hidden xl:block text-[9px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300 -mt-0.5">
+                  Verified Handover
+                </span>
+              </div>
             </Link>
             
-            <div className="hidden md:flex space-x-1">
+            {/* Desktop Navigation Links with Aceternity Animated Active Pill */}
+            <div className="hidden md:flex items-center space-x-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3.5 py-1.5 rounded-full text-sm font-medium flex items-center transition-all ${
+                    className={`relative px-4 py-1.5 rounded-full text-xs font-semibold flex items-center transition-colors z-10 ${
                       isActive
-                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/70 dark:text-blue-300 dark:border dark:border-blue-800/60 dark:shadow-[0_0_15px_-3px_rgba(59,130,246,0.3)] font-semibold"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/60"
+                        ? "text-blue-700 dark:text-blue-300"
+                        : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/50"
                     }`}
                   >
+                    {isActive && (
+                      <motion.span
+                        layoutId="navbar-active-pill"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        className="absolute inset-0 rounded-full bg-blue-50/90 dark:bg-blue-950/70 border border-blue-200/80 dark:border-blue-800/70 dark:shadow-[0_0_15px_-3px_rgba(59,130,246,0.35)] -z-10"
+                      />
+                    )}
                     {link.icon}
-                    {link.label}
+                    <span>{link.label}</span>
                   </Link>
                 );
               })}
             </div>
           </div>
 
+          {/* Right Action Icons & Auth */}
           <div className="hidden md:flex items-center space-x-2.5">
             {/* Theme Toggle */}
             <ThemeToggle />
@@ -121,15 +169,18 @@ export default function Navbar() {
               <>
                 <Link 
                   href="/sign-in" 
-                  className="text-gray-700 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800/70 transition-colors"
+                  className="text-gray-700 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800/70 transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link 
                   href="/sign-up" 
-                  className="bg-gray-900 text-white dark:bg-blue-600 dark:hover:bg-blue-500 text-sm px-4 py-2 rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-sm dark:shadow-[0_0_20px_-3px_rgba(59,130,246,0.5)]"
+                  className="relative inline-flex items-center justify-center p-[1px] overflow-hidden rounded-full font-medium transition-all hover:scale-105 active:scale-95 shadow-sm dark:shadow-[0_0_20px_-3px_rgba(59,130,246,0.5)] group cursor-pointer"
                 >
-                  Sign Up
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-400 rounded-full group-hover:opacity-90" />
+                  <span className="relative px-4 py-1.5 rounded-full bg-slate-900 dark:bg-blue-600 text-white text-xs font-bold transition-all flex items-center">
+                    Sign Up
+                  </span>
                 </Link>
               </>
             )}
@@ -191,3 +242,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
