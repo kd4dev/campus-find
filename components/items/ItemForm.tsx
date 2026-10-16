@@ -98,13 +98,13 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Item Name *</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Item Name *</label>
           <input {...register("itemName")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Black Leather Wallet" />
           {errors.itemName && <p className="text-red-500 text-xs mt-1">{errors.itemName.message}</p>}
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Category *</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Category *</label>
           <select {...register("category")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c]">
             <option value="">Select a category</option>
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
@@ -114,20 +114,20 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Description *</label>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Description *</label>
         <textarea {...register("description")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500 h-24" placeholder="Describe the item..." />
         {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">{type === 'LOST' ? 'Lost' : 'Found'} Location *</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">{type === 'LOST' ? 'Lost' : 'Found'} Location *</label>
           <input {...register("location")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Main Library, 2nd floor" />
           {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location.message}</p>}
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Date *</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Date *</label>
           <input type="date" {...register("date")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c]" />
           {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date.message}</p>}
         </div>
@@ -135,29 +135,29 @@ export default function ItemForm({ type }: { type: "LOST" | "FOUND" }) {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Color</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Color</label>
           <input {...register("color")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Brand</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Brand</label>
           <input {...register("brand")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Model</label>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Model</label>
           <input {...register("itemModel")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
           Distinguishing Features
-          {type === 'FOUND' && <span className="text-slate-500 dark:text-neutral-400 text-xs ml-2">(Keep some private for verification)</span>}
+          {type === 'FOUND' && <span className="text-neutral-500 dark:text-neutral-400 text-xs ml-2">(Keep some private for verification)</span>}
         </label>
         <input {...register("distinguishingFeatures")} className="w-full border border-gray-300 dark:border-white/10 rounded-xl p-2.5 text-sm bg-white dark:bg-[#18181c] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/30 focus:border-[#ff7d0c] placeholder:text-gray-400 dark:placeholder:text-neutral-500" placeholder="e.g. Scratch on left side" />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-neutral-300 mb-1">Images</label>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Images</label>
         <div className="flex flex-wrap gap-4 mb-4">
           {images.map((img, i) => (
             <div key={i} className="relative w-24 h-24 border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden">

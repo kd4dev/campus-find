@@ -42,7 +42,7 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
 
   if (reports.length === 0) {
     return (
-      <div className="p-8 text-center text-slate-500 dark:text-neutral-400 text-sm">
+      <div className="p-8 text-center text-neutral-500 dark:text-neutral-400 text-sm">
         No reports found. Community listings are clean!
       </div>
     );
@@ -51,7 +51,7 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left">
-        <thead className="border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#18181c] text-xs font-semibold text-slate-500 dark:text-neutral-400 uppercase tracking-wider">
+        <thead className="border-b border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-[#18181c] text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
           <tr>
             <th className="px-6 py-3">Reported Item</th>
             <th className="px-6 py-3">Reported By</th>
@@ -62,19 +62,19 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
             <th className="px-6 py-3 text-right">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100 dark:divide-white/10">
+        <tbody className="divide-y divide-neutral-100 dark:divide-white/10">
           {reports.map((report) => (
-            <tr key={report._id} className="hover:bg-slate-50/60 dark:hover:bg-white/[0.03] transition-colors">
+            <tr key={report._id} className="hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] transition-colors">
               <td className="px-6 py-4 text-sm font-semibold">
                 {report.itemId ? (
                   <Link href={`/items/${report.itemId._id}`} className="text-[#ff7d0c] dark:text-[#f79b4a] hover:underline">
                     {report.itemId.itemName}
                   </Link>
                 ) : (
-                  <span className="text-slate-400 dark:text-neutral-500 italic text-xs">Deleted</span>
+                  <span className="text-neutral-400 dark:text-neutral-500 italic text-xs">Deleted</span>
                 )}
               </td>
-              <td className="px-6 py-4 text-sm text-slate-600 dark:text-neutral-300">
+              <td className="px-6 py-4 text-sm text-neutral-600 dark:text-neutral-300">
                 {report.reporterId?.name || "Student"}
               </td>
               <td className="px-6 py-4 text-sm">
@@ -82,7 +82,7 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
                   {report.reason}
                 </span>
               </td>
-              <td className="px-6 py-4 text-xs text-slate-500 dark:text-neutral-400 max-w-xs truncate">
+              <td className="px-6 py-4 text-xs text-neutral-500 dark:text-neutral-400 max-w-xs truncate">
                 {report.details || "—"}
               </td>
               <td className="px-6 py-4 text-sm">
@@ -92,13 +92,13 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
                       ? "bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-900/50"
                       : report.status === "RESOLVED"
                       ? "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50"
-                      : "bg-slate-100 dark:bg-[#18181c] text-slate-600 dark:text-neutral-300 border border-slate-200 dark:border-white/10"
+                      : "bg-neutral-100 dark:bg-[#18181c] text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-white/10"
                   }`}
                 >
                   {report.status}
                 </span>
               </td>
-              <td className="px-6 py-4 text-xs text-slate-400 dark:text-neutral-500">
+              <td className="px-6 py-4 text-xs text-neutral-400 dark:text-neutral-500">
                 {report.createdAt ? format(new Date(report.createdAt), "MMM d, yyyy") : ""}
               </td>
               <td className="px-6 py-4 text-sm text-right space-x-2">
@@ -115,7 +115,7 @@ export default function AdminReportsList({ initialReports }: { initialReports: a
                     <button
                       onClick={() => handleStatus(report._id, "DISMISSED")}
                       disabled={loadingId === report._id}
-                      className="text-xs bg-slate-100 dark:bg-[#18181c] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10 px-2.5 py-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/5 font-medium transition-colors"
+                      className="text-xs bg-neutral-100 dark:bg-[#18181c] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 px-2.5 py-1 rounded-lg hover:bg-neutral-200 dark:hover:bg-white/5 font-medium transition-colors"
                       title="Dismiss Report"
                     >
                       <X className="w-3.5 h-3.5 inline mr-1" /> Dismiss

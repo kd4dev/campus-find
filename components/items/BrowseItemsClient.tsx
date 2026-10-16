@@ -311,8 +311,8 @@ export default function BrowseItemsClient({
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 flex items-center space-x-1.5 cursor-pointer ${
                     isSelected
-                      ? "bg-slate-900 text-white dark:bg-[#FF7D0C] dark:text-white shadow-sm dark:shadow-[0_0_15px_-2px_rgba(255,125,12,0.4)]"
-                      : "bg-gray-100/80 dark:bg-[#141416] text-gray-600 dark:text-neutral-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/70 dark:hover:bg-[#18181c] border border-transparent dark:border-white/5"
+                      ? "bg-neutral-900 text-white dark:bg-[#FF7D0C] dark:text-white shadow-sm dark:shadow-[0_0_15px_-2px_rgba(255,125,12,0.4)]"
+                      : "bg-neutral-100/80 dark:bg-[#141416] text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/70 dark:hover:bg-[#18181c] border border-transparent dark:border-white/5"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -331,9 +331,9 @@ export default function BrowseItemsClient({
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.15 }}
-              className="mt-4 pt-3 border-t border-gray-100 dark:border-white/10 flex flex-wrap items-center gap-2 text-xs"
+              className="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10 flex flex-wrap items-center gap-2 text-xs"
             >
-              <span className="text-gray-500 dark:text-neutral-400 font-medium">
+              <span className="text-neutral-500 dark:text-neutral-400 font-medium">
                 Active filters ({filteredItems.length} {filteredItems.length === 1 ? "match" : "matches"}):
               </span>
 
@@ -347,27 +347,27 @@ export default function BrowseItemsClient({
               )}
 
               {selectedType !== "ALL" && (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#18181c] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-[#18181c] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
                   Type: {selectedType}
-                  <button onClick={() => setSelectedType("ALL")} className="ml-1.5 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                  <button onClick={() => setSelectedType("ALL")} className="ml-1.5 hover:text-neutral-900 dark:hover:text-white cursor-pointer">
                     <X className="w-3 h-3" />
                   </button>
                 </span>
               )}
 
               {selectedCategory !== "ALL" && (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#18181c] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-[#18181c] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
                   Category: {selectedCategory}
-                  <button onClick={() => setSelectedCategory("ALL")} className="ml-1.5 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                  <button onClick={() => setSelectedCategory("ALL")} className="ml-1.5 hover:text-neutral-900 dark:hover:text-white cursor-pointer">
                     <X className="w-3 h-3" />
                   </button>
                 </span>
               )}
 
               {selectedZone !== "All Campus Zones" && (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-[#18181c] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10">
+                <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-neutral-100 dark:bg-[#18181c] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
                   Zone: {selectedZone}
-                  <button onClick={() => setSelectedZone("All Campus Zones")} className="ml-1.5 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                  <button onClick={() => setSelectedZone("All Campus Zones")} className="ml-1.5 hover:text-neutral-900 dark:hover:text-white cursor-pointer">
                     <X className="w-3 h-3" />
                   </button>
                 </span>

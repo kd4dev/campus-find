@@ -96,7 +96,7 @@ export default function ClaimButton({ item, currentUser }: { item: any, currentU
       )}
 
       {!isResolved && (
-        <p className="text-xs text-center text-slate-500 dark:text-neutral-400">
+        <p className="text-xs text-center text-neutral-500 dark:text-neutral-400">
           This will open a secure claim workflow with private chat to verify details.
         </p>
       )}

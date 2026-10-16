@@ -8,7 +8,7 @@ export default function ImageGallery({ images, itemName }: { images: { url: stri
 
   if (!images || images.length === 0) {
     return (
-      <div className="w-full h-full min-h-[320px] flex flex-col items-center justify-center text-slate-400 dark:text-neutral-500 bg-slate-50 dark:bg-[#0e0e11]">
+      <div className="w-full h-full min-h-[320px] flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 bg-neutral-50 dark:bg-[#0e0e11]">
         <ImageIcon className="w-16 h-16 mb-2 opacity-40" />
         <p className="text-sm font-medium">No images provided</p>
       </div>
@@ -32,14 +32,14 @@ export default function ImageGallery({ images, itemName }: { images: { url: stri
             <button 
               onClick={prev} 
               aria-label="Previous image"
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#141416]/90 hover:bg-white dark:hover:bg-[#18181c] p-2 rounded-full shadow-lg text-slate-800 dark:text-white border border-transparent dark:border-white/10 transition-all backdrop-blur-sm hover:scale-105 active:scale-95"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#141416]/90 hover:bg-white dark:hover:bg-[#18181c] p-2 rounded-full shadow-lg text-neutral-800 dark:text-white border border-transparent dark:border-white/10 transition-all backdrop-blur-sm hover:scale-105 active:scale-95"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button 
               onClick={next} 
               aria-label="Next image"
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#141416]/90 hover:bg-white dark:hover:bg-[#18181c] p-2 rounded-full shadow-lg text-slate-800 dark:text-white border border-transparent dark:border-white/10 transition-all backdrop-blur-sm hover:scale-105 active:scale-95"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-[#141416]/90 hover:bg-white dark:hover:bg-[#18181c] p-2 rounded-full shadow-lg text-neutral-800 dark:text-white border border-transparent dark:border-white/10 transition-all backdrop-blur-sm hover:scale-105 active:scale-95"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -48,7 +48,7 @@ export default function ImageGallery({ images, itemName }: { images: { url: stri
       </div>
       
       {images.length > 1 && (
-        <div className="flex gap-2 p-3 bg-slate-100 dark:bg-[#0e0e11] border-t border-slate-200 dark:border-white/10 overflow-x-auto">
+        <div className="flex gap-2 p-3 bg-neutral-100 dark:bg-[#0e0e11] border-t border-neutral-200 dark:border-white/10 overflow-x-auto">
           {images.map((img, i) => (
             <button 
               key={i} 

@@ -9,10 +9,10 @@ export default function CampusContrast() {
         <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-[#f79b4a] border border-orange-500/20 backdrop-blur-md">
           The Campus Problem Solved
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-4 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 dark:text-white mt-4 tracking-tight">
           Why campus group chats fail.
         </h2>
-        <p className="text-slate-600 dark:text-neutral-300/90 text-base sm:text-lg mt-3 leading-relaxed">
+        <p className="text-neutral-600 dark:text-neutral-300/90 text-base sm:text-lg mt-3 leading-relaxed">
           Posting lost keys or electronics in 500-member WhatsApp groups leads to doxxing, false claims, and stolen belongings. CampusFind replaces the chaos with an engineered handover protocol.
         </p>
       </div>
@@ -31,17 +31,17 @@ export default function CampusContrast() {
                 <span className="text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">
                   The Old Way
                 </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
                   WhatsApp & Social Boards
                 </h3>
               </div>
             </div>
 
-            <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+            <ul className="space-y-4 text-sm text-neutral-700 dark:text-neutral-300">
               <li className="flex items-start">
                 <XCircle className="w-5 h-5 text-rose-500 dark:text-rose-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Personal Phone Numbers Leaked</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Personal Phone Numbers Leaked</strong>
                   Strangers get your cell phone number, dorm hints, and personal profiles in public chat archives.
                 </div>
               </li>
@@ -49,7 +49,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <XCircle className="w-5 h-5 text-rose-500 dark:text-rose-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Opportunistic "Finders" Claim Your Item</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Opportunistic "Finders" Claim Your Item</strong>
                   Anyone in the group can message the finder claiming ownership without proving identity or serials.
                 </div>
               </li>
@@ -57,7 +57,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <XCircle className="w-5 h-5 text-rose-500 dark:text-rose-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Listings Disappear in Minutes</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Listings Disappear in Minutes</strong>
                   Lost posts drown under hundreds of unrelated group messages, or get deleted before the owner sees them.
                 </div>
               </li>
@@ -65,7 +65,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <XCircle className="w-5 h-5 text-rose-500 dark:text-rose-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Zero Handover Accountability</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Zero Handover Accountability</strong>
                   No record of who took the item, leaving original finders vulnerable to accusations of theft.
                 </div>
               </li>
@@ -91,17 +91,17 @@ export default function CampusContrast() {
                 <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
                   The CampusFind Protocol
                 </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
                   Engineered Student Handover
                 </h3>
               </div>
             </div>
 
-            <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+            <ul className="space-y-4 text-sm text-neutral-700 dark:text-neutral-300">
               <li className="flex items-start">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Complete Anonymity & Privacy</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Complete Anonymity & Privacy</strong>
                   Direct in-app messaging without exchanging phone numbers, Instagram, or social profiles.
                 </div>
               </li>
@@ -109,7 +109,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">One-Time 6-Digit Handover OTP</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">One-Time 6-Digit Handover OTP</strong>
                   The real owner generates a temporary verification code. The finder enters it upon physical return.
                 </div>
               </li>
@@ -117,7 +117,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Active Until Physical Resolution</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Active Until Physical Resolution</strong>
                   Items remain visible with "Claim in Progress" status so other potential owners can monitor it until OTP verification.
                 </div>
               </li>
@@ -125,7 +125,7 @@ export default function CampusContrast() {
               <li className="flex items-start">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mr-3 mt-0.5" />
                 <div>
-                  <strong className="font-semibold text-slate-900 dark:text-white block">Campus Community Moderation</strong>
+                  <strong className="font-semibold text-neutral-900 dark:text-white block">Campus Community Moderation</strong>
                   Flagged or fraudulent listings can be reported by students and resolved by verified campus admins.
                 </div>
               </li>

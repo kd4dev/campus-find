@@ -230,7 +230,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
           )
         ) : (
           <div className="text-xs md:text-sm space-y-2">
-            <p className="font-semibold text-gray-800 dark:text-slate-200">Submitted Proof Details:</p>
+            <p className="font-semibold text-neutral-800 dark:text-neutral-200">Submitted Proof Details:</p>
             <p className="text-gray-600 dark:text-neutral-300 bg-gray-50 dark:bg-[#141416] p-3 rounded-xl border border-gray-100 dark:border-white/10 italic">
               "{claim.proofDescription || proofDescription}"
             </p>
@@ -368,7 +368,7 @@ export default function ClaimWorkflow({ claim, role }: { claim: any, role: 'CLAI
                   maxLength={6} 
                   value={otp} 
                   onChange={e => setOtp(e.target.value.replace(/\D/g, ''))} 
-                  className="w-48 text-center tracking-widest text-3xl font-mono font-black border-2 border-[#ff7d0c]/50 dark:border-[#f79b4a]/60 rounded-xl p-3 mx-auto block bg-orange-50/30 dark:bg-orange-950/20 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/40" 
+                  className="w-48 text-center tracking-widest text-3xl font-mono font-black border-2 border-[#ff7d0c]/50 dark:border-[#f79b4a]/60 rounded-xl p-3 mx-auto block bg-orange-50/30 dark:bg-orange-950/20 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff7d0c]/40" 
                   placeholder="------" 
                 />
               </div>

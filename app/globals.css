@@ -57,15 +57,15 @@
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #ffffff;
+  --foreground: #171717;
   --card-bg: #ffffff;
-  --border-color: #e2e8f0;
+  --border-color: #e5e5e5;
 }
 
 .dark {
   --background: #0a0a0b;
-  --foreground: #f4f4f5;
+  --foreground: #fafafa;
   --card-bg: #141416;
   --border-color: rgba(255, 255, 255, 0.1);
 }
@@ -80,13 +80,15 @@ body {
 }
 
 /* Custom Aceternity-style grid and dot patterns with theme adaptability */
+.bg-grid-neutral,
 .bg-grid-slate {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
+.dark .bg-grid-neutral,
 .dark .bg-grid-slate {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
@@ -116,9 +118,9 @@ body {
 
 /* Glassmorphism card */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 231, 235, 0.8);
+  border: 1px solid #e5e5e5;
 }
 
 .dark .glass-panel {

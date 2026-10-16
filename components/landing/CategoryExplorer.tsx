@@ -98,10 +98,10 @@ export default function CategoryExplorer() {
           <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-orange-500/10 text-orange-600 dark:text-[#f79b4a] border border-orange-500/20 backdrop-blur-md">
             Campus Catalog
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mt-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-neutral-900 dark:text-white mt-4 tracking-tight">
             Browse by item category.
           </h2>
-          <p className="text-slate-600 dark:text-neutral-400 text-sm sm:text-base mt-2">
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base mt-2">
             Filter active listings across high-traffic campus zones.
           </p>
         </div>
@@ -126,8 +126,8 @@ export default function CategoryExplorer() {
               onClick={() => setSelectedCat(cat.id)}
               className={`flex items-center space-x-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 isActive
-                  ? "bg-slate-900 dark:bg-[#FF7D0C] text-white dark:text-white shadow-md dark:shadow-[0_0_20px_-3px_rgba(255,125,12,0.35)] scale-105"
-                  : "bg-white dark:bg-[#141416] text-slate-700 dark:text-neutral-300 border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-[#18181c]"
+                  ? "bg-neutral-900 dark:bg-[#FF7D0C] text-white dark:text-white shadow-md dark:shadow-[0_0_20px_-3px_rgba(255,125,12,0.35)] scale-105"
+                  : "bg-white dark:bg-[#141416] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 hover:border-neutral-300 dark:hover:border-white/20 hover:bg-neutral-50 dark:hover:bg-[#18181c]"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -135,7 +135,7 @@ export default function CategoryExplorer() {
               <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
                 isActive 
                   ? "bg-white/20 text-white font-bold" 
-                  : "bg-slate-100 dark:bg-[#202025] text-slate-500 dark:text-neutral-400"
+                  : "bg-neutral-100 dark:bg-[#202025] text-neutral-500 dark:text-neutral-400"
               }`}>
                 {cat.count}
               </span>
@@ -145,19 +145,19 @@ export default function CategoryExplorer() {
       </div>
 
       {/* Category Spotlight Display Card */}
-      <div className="bg-white dark:bg-[#141416] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-sm dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8),0_0_30px_-5px_rgba(255,125,12,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all">
+      <div className="bg-white dark:bg-[#141416] rounded-3xl border border-neutral-200/80 dark:border-white/10 p-6 sm:p-8 shadow-sm dark:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8),0_0_30px_-5px_rgba(255,125,12,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all">
         <div className="space-y-3 max-w-xl">
           <div className="flex items-center space-x-2">
             <span className="text-xs font-bold text-orange-600 dark:text-[#f79b4a]">
               Most frequently reported
             </span>
-            <span className="text-slate-400 text-xs">•</span>
-            <span className="text-xs text-slate-500 dark:text-neutral-400">
+            <span className="text-neutral-400 text-xs">•</span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-400">
               {current.count} listings reported this semester
             </span>
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+          <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white">
             Common {current.name} on Campus
           </h3>
 
@@ -165,7 +165,7 @@ export default function CategoryExplorer() {
             {current.examples.map((ex, i) => (
               <span
                 key={i}
-                className="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-[#1c1c20] text-slate-700 dark:text-neutral-200 dark:border dark:border-white/10 text-xs font-medium"
+                className="px-2.5 py-1 rounded-xl bg-neutral-100 dark:bg-[#1c1c20] text-neutral-700 dark:text-neutral-200 dark:border dark:border-white/10 text-xs font-medium"
               >
                 {ex}
               </span>
@@ -174,9 +174,9 @@ export default function CategoryExplorer() {
         </div>
 
         {/* Live Snippet Box */}
-        <div className="w-full md:w-auto p-4 rounded-2xl bg-slate-50 dark:bg-[#0e0e11] border border-slate-200/80 dark:border-white/10 shrink-0 min-w-[280px]">
+        <div className="w-full md:w-auto p-4 rounded-2xl bg-neutral-50 dark:bg-[#0e0e11] border border-neutral-200/80 dark:border-white/10 shrink-0 min-w-[280px]">
           <div className="flex items-center justify-between text-[11px] mb-2">
-            <span className="font-semibold text-slate-500 dark:text-neutral-400">Latest Report</span>
+            <span className="font-semibold text-neutral-500 dark:text-neutral-400">Latest Report</span>
             <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
               current.recentItem.status === "FOUND"
                 ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border dark:border-emerald-800/60"
@@ -186,12 +186,12 @@ export default function CategoryExplorer() {
             </span>
           </div>
 
-          <p className="font-bold text-sm text-slate-900 dark:text-white mb-1">
+          <p className="font-bold text-sm text-neutral-900 dark:text-white mb-1">
             {current.recentItem.name}
           </p>
 
-          <p className="text-xs text-slate-500 dark:text-neutral-400 flex items-center mb-3">
-            <MapPin className="w-3 h-3 mr-1 text-slate-400 shrink-0" />
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 flex items-center mb-3">
+            <MapPin className="w-3 h-3 mr-1 text-neutral-400 shrink-0" />
             <span className="truncate">{current.recentItem.location}</span>
           </p>
 

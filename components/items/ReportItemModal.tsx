@@ -38,7 +38,7 @@ export default function ReportItemModal({ itemId, itemName }: { itemId: string; 
           setIsOpen(true);
           setErrorMessage(null);
         }}
-        className="text-xs text-slate-500 dark:text-neutral-400 hover:text-red-600 dark:hover:text-rose-400 flex items-center transition-colors cursor-pointer py-1 px-2 rounded-md hover:bg-red-50 dark:hover:bg-rose-950/30"
+        className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-red-600 dark:hover:text-rose-400 flex items-center transition-colors cursor-pointer py-1 px-2 rounded-md hover:bg-red-50 dark:hover:bg-rose-950/30"
       >
         <Flag className="w-3.5 h-3.5 mr-1" /> Report Listing
       </button>
@@ -51,7 +51,7 @@ export default function ReportItemModal({ itemId, itemName }: { itemId: string; 
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="bg-white dark:bg-[#141416] rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-100 dark:border-white/10 relative text-slate-900 dark:text-white"
+              className="bg-white dark:bg-[#141416] rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-100 dark:border-white/10 relative text-neutral-900 dark:text-white"
             >
               <button
                 onClick={() => setIsOpen(false)}
