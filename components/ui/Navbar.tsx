@@ -3,11 +3,32 @@
 import Link from "next/link";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { Menu, Search, PlusCircle, Bell, MessageSquare, LayoutDashboard } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const { isSignedIn } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    if (!isSignedIn) return;
+
+    const checkUnread = async () => {
+      try {
+        const res = await fetch("/api/notifications/count");
+        if (res.ok) {
+          const data = await res.json();
+          setUnreadCount(data.count || 0);
+        }
+      } catch (e) {
+        // ignore error
+      }
+    };
+
+    checkUnread();
+    const interval = setInterval(checkUnread, 15000);
+    return () => clearInterval(interval);
+  }, [isSignedIn]);
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
@@ -34,16 +55,19 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             {isSignedIn ? (
               <>
-                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
+                <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 p-1" title="Dashboard">
                   <LayoutDashboard className="w-5 h-5" />
                 </Link>
-                <Link href="/messages" className="text-gray-600 hover:text-gray-900">
+                <Link href="/messages" className="text-gray-600 hover:text-gray-900 p-1" title="Messages">
                   <MessageSquare className="w-5 h-5" />
                 </Link>
-                <Link href="/notifications" className="text-gray-600 hover:text-gray-900">
+                <Link href="/notifications" className="text-gray-600 hover:text-gray-900 p-1 relative" title="Notifications">
                   <Bell className="w-5 h-5" />
+                  {unreadCount > 0 && (
+                    <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-white animate-pulse" />
+                  )}
                 </Link>
-                <UserButton  />
+                <UserButton />
               </>
             ) : (
               <>
@@ -77,8 +101,16 @@ export default function Navbar() {
               <>
                 <Link href="/dashboard" className="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md">Dashboard</Link>
                 <Link href="/messages" className="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md">Messages</Link>
+                <Link href="/notifications" className="block px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-md flex items-center justify-between">
+                  <span>Notifications</span>
+                  {unreadCount > 0 && (
+                    <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                      {unreadCount}
+                    </span>
+                  )}
+                </Link>
                 <div className="px-3 py-2">
-                  <UserButton  />
+                  <UserButton />
                 </div>
               </>
             ) : (

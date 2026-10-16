@@ -10,15 +10,20 @@ export async function syncCurrentUser() {
 
   await connectToDatabase();
 
-  const name = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-  const email = user.emailAddresses[0]?.emailAddress;
+  const primaryEmail = user.emailAddresses?.[0]?.emailAddress || `${user.id}@student.college.edu`;
+  const name = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.username || primaryEmail.split('@')[0] || "College Student";
 
   const dbUser = await User.findOneAndUpdate(
     { clerkUserId: user.id },
     {
-      name,
-      email,
-      avatar: user.imageUrl,
+      $set: {
+        name,
+        email: primaryEmail,
+        avatar: user.imageUrl || "",
+      },
+      $setOnInsert: {
+        role: "USER"
+      }
     },
     { upsert: true, new: true }
   );

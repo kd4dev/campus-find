@@ -14,23 +14,33 @@ export default async function ClaimDetails({ params }: { params: Promise<{ claim
   const currentUser = await getCurrentDbUser();
   if (!currentUser) redirect("/sign-in");
 
-  const isClaimant = currentUser._id === claim.claimantId._id;
-  const isFinder = currentUser._id === claim.finderId._id;
+  const claimantIdStr = (claim.claimantId?._id || claim.claimantId)?.toString();
+  const finderIdStr = (claim.finderId?._id || claim.finderId)?.toString();
+  const currentUserIdStr = currentUser._id?.toString();
+
+  const isClaimant = currentUserIdStr === claimantIdStr;
+  const isFinder = currentUserIdStr === finderIdStr;
 
   if (!isClaimant && !isFinder && currentUser.role !== 'ADMIN') {
     return <div className="p-8 text-center text-red-500">Unauthorized access to this claim.</div>;
   }
 
   const role = isClaimant ? 'CLAIMANT' : 'FINDER';
+  const itemName = claim.itemId?.itemName || "Unknown Item";
+  const itemId = claim.itemId?._id || claim.itemId;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="mb-6">
         <Link href="/dashboard" className="text-gray-500 hover:text-gray-900 text-sm flex items-center mb-2">
-          Dashboard <ChevronRight className="w-4 h-4 mx-1" /> Claims <ChevronRight className="w-4 h-4 mx-1" /> {claim.itemId.itemName}
+          Dashboard <ChevronRight className="w-4 h-4 mx-1" /> Claims <ChevronRight className="w-4 h-4 mx-1" /> {itemName}
         </Link>
         <h1 className="text-3xl font-bold text-gray-900">Claim Workflow</h1>
-        <p className="text-gray-600 mt-1">Item: <Link href={`/items/${claim.itemId._id}`} className="text-blue-600 hover:underline">{claim.itemId.itemName}</Link></p>
+        {itemId && (
+          <p className="text-gray-600 mt-1">
+            Item: <Link href={`/items/${itemId}`} className="text-blue-600 hover:underline">{itemName}</Link>
+          </p>
+        )}
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
@@ -52,24 +62,24 @@ export default async function ClaimDetails({ params }: { params: Promise<{ claim
             <div className="mb-4">
               <p className="text-xs text-gray-500 mb-1">CLAIMANT</p>
               <div className="flex items-center">
-                {claim.claimantId.avatar ? (
-                  <img src={claim.claimantId.avatar} className="w-8 h-8 rounded-full mr-2" />
+                {claim.claimantId?.avatar ? (
+                  <img src={claim.claimantId.avatar} className="w-8 h-8 rounded-full mr-2" alt="Claimant" />
                 ) : (
                   <div className="w-8 h-8 bg-gray-200 rounded-full mr-2" />
                 )}
-                <span className="text-gray-900">{claim.claimantId.name} {isClaimant ? "(You)" : ""}</span>
+                <span className="text-gray-900">{claim.claimantId?.name || "Claimant"} {isClaimant ? "(You)" : ""}</span>
               </div>
             </div>
 
             <div>
               <p className="text-xs text-gray-500 mb-1">FINDER</p>
               <div className="flex items-center">
-                {claim.finderId.avatar ? (
-                  <img src={claim.finderId.avatar} className="w-8 h-8 rounded-full mr-2" />
+                {claim.finderId?.avatar ? (
+                  <img src={claim.finderId.avatar} className="w-8 h-8 rounded-full mr-2" alt="Finder" />
                 ) : (
                   <div className="w-8 h-8 bg-gray-200 rounded-full mr-2" />
                 )}
-                <span className="text-gray-900">{claim.finderId.name} {isFinder ? "(You)" : ""}</span>
+                <span className="text-gray-900">{claim.finderId?.name || "Finder"} {isFinder ? "(You)" : ""}</span>
               </div>
             </div>
             

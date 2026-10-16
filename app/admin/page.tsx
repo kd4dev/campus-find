@@ -5,8 +5,10 @@ import connectToDatabase from "@/lib/mongodb";
 import { User } from "@/lib/models/User";
 import { Item } from "@/lib/models/Item";
 import { Claim } from "@/lib/models/Claim";
+import { Report } from "@/lib/models/Report";
 import { redirect } from "next/navigation";
-import { ShieldAlert, Users, Package, FileCheck } from "lucide-react";
+import { ShieldAlert, Users, Package, FileCheck, Flag } from "lucide-react";
+import AdminReportsList from "@/components/admin/AdminReportsList";
 
 export default async function AdminDashboard() {
   const user = await getCurrentDbUser();
@@ -18,8 +20,16 @@ export default async function AdminDashboard() {
   const totalItems = await Item.countDocuments();
   const activeClaims = await Claim.countDocuments({ status: { $nin: ["COMPLETED", "REJECTED", "CANCELLED"] } });
   const completedClaims = await Claim.countDocuments({ status: "COMPLETED" });
+  const pendingReportsCount = await Report.countDocuments({ status: "PENDING" });
 
   const recentUsers = await User.find().sort({ createdAt: -1 }).limit(5);
+  const reports = await Report.find({})
+    .populate("reporterId", "name email avatar")
+    .populate("itemId", "itemName type location status")
+    .sort({ createdAt: -1 })
+    .limit(20);
+
+  const parsedReports = JSON.parse(JSON.stringify(reports));
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -28,11 +38,11 @@ export default async function AdminDashboard() {
         Admin Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
         <div className="bg-white p-6 rounded-xl border shadow-sm">
           <div className="flex items-center text-blue-600 mb-2">
             <Users className="w-5 h-5 mr-2" />
-            <h3 className="font-semibold">Total Users</h3>
+            <h3 className="font-semibold text-sm">Total Users</h3>
           </div>
           <p className="text-3xl font-bold">{totalUsers}</p>
         </div>
@@ -40,7 +50,7 @@ export default async function AdminDashboard() {
         <div className="bg-white p-6 rounded-xl border shadow-sm">
           <div className="flex items-center text-purple-600 mb-2">
             <Package className="w-5 h-5 mr-2" />
-            <h3 className="font-semibold">Total Items</h3>
+            <h3 className="font-semibold text-sm">Total Items</h3>
           </div>
           <p className="text-3xl font-bold">{totalItems}</p>
         </div>
@@ -48,7 +58,7 @@ export default async function AdminDashboard() {
         <div className="bg-white p-6 rounded-xl border shadow-sm">
           <div className="flex items-center text-orange-600 mb-2">
             <ShieldAlert className="w-5 h-5 mr-2" />
-            <h3 className="font-semibold">Active Claims</h3>
+            <h3 className="font-semibold text-sm">Active Claims</h3>
           </div>
           <p className="text-3xl font-bold">{activeClaims}</p>
         </div>
@@ -56,12 +66,35 @@ export default async function AdminDashboard() {
         <div className="bg-white p-6 rounded-xl border shadow-sm">
           <div className="flex items-center text-green-600 mb-2">
             <FileCheck className="w-5 h-5 mr-2" />
-            <h3 className="font-semibold">Successful Returns</h3>
+            <h3 className="font-semibold text-sm">Returns</h3>
           </div>
           <p className="text-3xl font-bold">{completedClaims}</p>
         </div>
+
+        <div className="bg-white p-6 rounded-xl border shadow-sm">
+          <div className="flex items-center text-red-600 mb-2">
+            <Flag className="w-5 h-5 mr-2" />
+            <h3 className="font-semibold text-sm">Open Reports</h3>
+          </div>
+          <p className="text-3xl font-bold">{pendingReportsCount}</p>
+        </div>
       </div>
 
+      {/* Moderation / Reports Section */}
+      <div className="bg-white rounded-xl border shadow-sm overflow-hidden mb-8">
+        <div className="px-6 py-4 border-b bg-gray-50 flex justify-between items-center">
+          <h2 className="font-bold text-lg flex items-center">
+            <Flag className="w-5 h-5 text-red-600 mr-2" />
+            Reported Listings & Flagged Content
+          </h2>
+          <span className="text-xs bg-red-100 text-red-800 font-semibold px-2 py-0.5 rounded-full">
+            {pendingReportsCount} pending
+          </span>
+        </div>
+        <AdminReportsList initialReports={parsedReports} />
+      </div>
+
+      {/* Recent Users */}
       <div className="bg-white rounded-xl border shadow-sm overflow-hidden mb-8">
         <div className="px-6 py-4 border-b bg-gray-50">
           <h2 className="font-bold text-lg">Recent Users</h2>

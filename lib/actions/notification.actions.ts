@@ -13,6 +13,18 @@ export async function getUserNotifications() {
   return JSON.parse(JSON.stringify(notifications));
 }
 
+export async function getUnreadNotificationCount() {
+  try {
+    const user = await getCurrentDbUser();
+    if (!user) return 0;
+
+    await connectToDatabase();
+    return await Notification.countDocuments({ userId: user._id, read: false });
+  } catch (err) {
+    return 0;
+  }
+}
+
 export async function markNotificationsAsRead() {
   const user = await getCurrentDbUser();
   if (!user) return;

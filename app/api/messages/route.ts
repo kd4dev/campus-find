@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import { Message } from '@/lib/models/Message';
 import { Conversation } from '@/lib/models/Conversation';
@@ -13,15 +14,23 @@ export async function GET(req: Request) {
     const conversationId = searchParams.get('conversationId');
     const since = searchParams.get('since');
 
-    if (!conversationId) {
-      return NextResponse.json({ error: 'Missing conversationId' }, { status: 400 });
+    if (!conversationId || !mongoose.Types.ObjectId.isValid(conversationId)) {
+      return NextResponse.json({ error: 'Invalid conversationId' }, { status: 400 });
     }
 
     await connectToDatabase();
 
-    // Verify user is part of conversation
     const conversation = await Conversation.findById(conversationId);
-    if (!conversation || !conversation.participants.includes(user._id)) {
+    if (!conversation) {
+      return NextResponse.json({ error: 'Conversation not found' }, { status: 404 });
+    }
+
+    const currentUserIdStr = user._id.toString();
+    const isParticipant = conversation.participants.some(
+      (p: any) => p.toString() === currentUserIdStr
+    );
+
+    if (!isParticipant && user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
@@ -47,25 +56,34 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { conversationId, content } = body;
 
-    if (!conversationId || !content) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+    if (!conversationId || !mongoose.Types.ObjectId.isValid(conversationId) || !content?.trim()) {
+      return NextResponse.json({ error: 'Missing or invalid fields' }, { status: 400 });
     }
 
     await connectToDatabase();
 
     const conversation = await Conversation.findById(conversationId);
-    if (!conversation || !conversation.participants.includes(user._id)) {
+    if (!conversation) {
+      return NextResponse.json({ error: 'Conversation not found' }, { status: 404 });
+    }
+
+    const currentUserIdStr = user._id.toString();
+    const isParticipant = conversation.participants.some(
+      (p: any) => p.toString() === currentUserIdStr
+    );
+
+    if (!isParticipant && user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
     const message = await Message.create({
       conversationId,
       senderId: user._id,
-      content,
+      content: content.trim(),
       readBy: [user._id]
     });
 
-    conversation.lastMessage = content;
+    conversation.lastMessage = content.trim();
     conversation.lastMessageAt = new Date();
     await conversation.save();
 

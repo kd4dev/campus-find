@@ -1,5 +1,6 @@
 "use server";
 
+import mongoose from "mongoose";
 import connectToDatabase from "../mongodb";
 import { Conversation } from "../models/Conversation";
 import { getCurrentDbUser } from "./user.actions";
@@ -22,13 +23,24 @@ export async function getConversationById(id: string) {
   const user = await getCurrentDbUser();
   if (!user) throw new Error("Unauthorized");
 
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    return null;
+  }
+
   await connectToDatabase();
   
   const conversation = await Conversation.findById(id)
     .populate("participants", "name avatar")
     .populate("itemId", "itemName");
     
-  if (!conversation || !conversation.participants.some((p: any) => p._id.toString() === user._id.toString())) {
+  if (!conversation) return null;
+
+  const currentUserIdStr = user._id.toString();
+  const isParticipant = conversation.participants.some(
+    (p: any) => (p._id?.toString() || p.toString()) === currentUserIdStr
+  );
+
+  if (!isParticipant && user.role !== 'ADMIN') {
     return null;
   }
 
@@ -39,13 +51,24 @@ export async function getConversationByClaimId(claimId: string) {
   const user = await getCurrentDbUser();
   if (!user) throw new Error("Unauthorized");
 
+  if (!claimId || !mongoose.Types.ObjectId.isValid(claimId)) {
+    return null;
+  }
+
   await connectToDatabase();
   
   const conversation = await Conversation.findOne({ claimId })
     .populate("participants", "name avatar")
     .populate("itemId", "itemName");
     
-  if (!conversation || !conversation.participants.some((p: any) => p._id.toString() === user._id.toString())) {
+  if (!conversation) return null;
+
+  const currentUserIdStr = user._id.toString();
+  const isParticipant = conversation.participants.some(
+    (p: any) => (p._id?.toString() || p.toString()) === currentUserIdStr
+  );
+
+  if (!isParticipant && user.role !== 'ADMIN') {
     return null;
   }
 

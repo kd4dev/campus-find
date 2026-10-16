@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { MapPin, Calendar, Tag, User as UserIcon, ShieldCheck } from "lucide-react";
 import ImageGallery from "@/components/items/ImageGallery";
 import ClaimButton from "@/components/claims/ClaimButton";
+import ReportItemModal from "@/components/items/ReportItemModal";
 
 export default async function ItemDetails({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -13,7 +14,9 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
   if (!item) notFound();
 
   const currentUser = await getCurrentDbUser();
-  const isOwner = currentUser && currentUser._id === item.userId._id;
+  const rawItemUserId = (item.userId?._id || item.userId)?.toString();
+  const currentUserId = currentUser?._id?.toString();
+  const isOwner = Boolean(currentUserId && rawItemUserId && currentUserId === rawItemUserId);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
@@ -50,7 +53,7 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
               <div className="flex items-center text-gray-700">
                 <Calendar className="w-5 h-5 mr-3 text-gray-400" />
                 <span>
-                  {format(new Date(item.date), 'MMMM d, yyyy')} 
+                  {item.date ? format(new Date(item.date), 'MMMM d, yyyy') : 'Recently'} 
                   {item.approximateTime && ` at approx. ${item.approximateTime}`}
                 </span>
               </div>
@@ -88,9 +91,13 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                   )}
                   <div>
                     <p className="text-sm text-gray-500">Reported by</p>
-                    <p className="font-medium text-gray-900">{item.userId?.name}</p>
+                    <p className="font-medium text-gray-900">{item.userId?.name || 'College Student'}</p>
                   </div>
                 </div>
+
+                {!isOwner && (
+                  <ReportItemModal itemId={item._id} itemName={item.itemName} />
+                )}
               </div>
 
               {currentUser ? (
