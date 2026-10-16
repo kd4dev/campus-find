@@ -44,9 +44,9 @@
 }
 
 .dark {
-  --background: #090d16;
+  --background: #080c14;
   --foreground: #f8fafc;
-  --card-bg: #0f172a;
+  --card-bg: #0d1322;
   --border-color: #1e293b;
 }
 

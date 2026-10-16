@@ -71,13 +71,13 @@ export default function ProtocolTimeline() {
   return (
     <section className="py-24 px-4 max-w-6xl mx-auto">
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-900/50">
+        <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 dark:shadow-[0_0_15px_-3px_rgba(99,102,241,0.2)] backdrop-blur-md">
           The CampusFind Standard
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-4 tracking-tight">
           How the 4-step handover works.
         </h2>
-        <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg mt-3 leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-300/90 text-base sm:text-lg mt-3 leading-relaxed">
           From the moment an item is misplaced until it is safely back in your hands, every step is designed for privacy, verification, and speed.
         </p>
       </div>
@@ -92,23 +92,23 @@ export default function ProtocolTimeline() {
               onMouseEnter={() => setActiveStep(idx)}
               className={`rounded-3xl p-6 sm:p-7 border flex flex-col justify-between transition-all duration-300 cursor-pointer ${
                 isSelected
-                  ? "bg-white dark:bg-slate-900 border-blue-500/70 dark:border-blue-500/60 shadow-xl shadow-blue-500/10 scale-[1.02]"
-                  : "bg-white/70 dark:bg-slate-900/60 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-900"
+                  ? "bg-white dark:bg-gradient-to-b dark:from-slate-800/90 dark:to-[#0c1322] border-blue-500/70 dark:border-blue-500/80 dark:border-t-blue-400/80 shadow-xl shadow-blue-500/10 dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8),0_0_30px_-5px_rgba(59,130,246,0.25)] scale-[1.02]"
+                  : "bg-white/70 dark:bg-slate-900/80 border-slate-200/80 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-850/80"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
                   <span className={`text-2xl font-black ${
                     isSelected 
-                      ? "text-blue-600 dark:text-blue-400" 
+                      ? "text-blue-600 dark:text-blue-400 dark:drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]" 
                       : "text-slate-400 dark:text-slate-600"
                   }`}>
                     {step.number}
                   </span>
                   <div className={`p-2.5 rounded-2xl ${
                     isSelected
-                      ? "bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400"
-                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
+                      ? "bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-300 dark:border dark:border-blue-700/60 dark:shadow-[0_0_12px_rgba(59,130,246,0.3)]"
+                      : "bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 dark:border dark:border-slate-700/50"
                   }`}>
                     <Icon className="w-5 h-5" />
                   </div>
@@ -120,7 +120,7 @@ export default function ProtocolTimeline() {
                 <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3">
                   {step.tagline}
                 </p>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                <p className="text-xs text-slate-600 dark:text-slate-300/90 leading-relaxed mb-6">
                   {step.description}
                 </p>
               </div>
@@ -128,8 +128,8 @@ export default function ProtocolTimeline() {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80">
                 <ul className="space-y-2">
                   {step.bullet.map((item, bIdx) => (
-                    <li key={bIdx} className="flex items-center text-[11px] text-slate-600 dark:text-slate-400">
-                      <Check className="w-3.5 h-3.5 mr-2 text-emerald-500 shrink-0" />
+                    <li key={bIdx} className="flex items-center text-[11px] text-slate-600 dark:text-slate-300/80">
+                      <Check className="w-3.5 h-3.5 mr-2 text-emerald-500 dark:text-emerald-400 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

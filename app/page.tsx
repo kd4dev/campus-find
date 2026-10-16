@@ -8,7 +8,7 @@ import { ShieldCheck, Lock, CheckCircle2, Heart } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/60 dark:bg-[#0b0f17] text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-200">
+    <div className="flex flex-col min-h-screen bg-slate-50/60 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-200">
       {/* 1. Asymmetric Hero with Live Interactive Console */}
       <HeroSection />
 
@@ -25,7 +25,7 @@ export default function Home() {
       <ClosingCTA />
 
       {/* Cohesive Campus Footer */}
-      <footer className="py-14 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 transition-colors">
+      <footer className="py-14 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-[#060910] transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-2 space-y-3">
@@ -93,7 +93,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+          <div className="pt-8 border-t border-slate-100 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
             <p>© {new Date().getFullYear()} CampusFind. Built for safer college communities.</p>
             <div className="flex items-center space-x-1">
               <span>Crafted for university students everywhere</span>
