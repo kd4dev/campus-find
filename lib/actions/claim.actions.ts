@@ -146,6 +146,20 @@ export async function updateClaimStatus(id: string, status: string, proofData?: 
     message = "Your ownership proof was rejected by the finder.";
   }
 
+  if (status === "REJECTED" || status === "CANCELLED") {
+    const rawItemId = (claim.itemId?._id || claim.itemId);
+    if (rawItemId) {
+      const otherActiveClaims = await Claim.countDocuments({
+        itemId: rawItemId,
+        _id: { $ne: claim._id },
+        status: { $nin: ["REJECTED", "CANCELLED", "COMPLETED"] }
+      });
+      if (otherActiveClaims === 0) {
+        await Item.findByIdAndUpdate(rawItemId, { status: "ACTIVE" });
+      }
+    }
+  }
+
   if (notifyUserId && mongoose.Types.ObjectId.isValid(notifyUserId.toString())) {
     try {
       await Notification.create({

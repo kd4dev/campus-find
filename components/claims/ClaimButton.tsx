@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, ShieldAlert } from "lucide-react";
+import { Loader2, ShieldAlert, CheckCircle } from "lucide-react";
 import { createClaim } from "@/lib/actions/claim.actions";
 
 export default function ClaimButton({ item, currentUser }: { item: any, currentUser: any }) {
@@ -41,22 +41,45 @@ export default function ClaimButton({ item, currentUser }: { item: any, currentU
     }
   };
 
-  const buttonText = item.type === 'FOUND' ? "I Think This Is Mine" : "I Found This Item";
+  const isResolved = item.status === 'RESOLVED' || item.status === 'CLOSED';
+  const buttonText = isResolved
+    ? "Item Resolved / Closed"
+    : item.type === 'FOUND'
+    ? "I Think This Is Mine"
+    : "I Found This Item";
   
   return (
     <div className="space-y-3">
       <button 
         onClick={handleClaim}
-        disabled={isSubmitting || item.status !== 'ACTIVE'}
-        className="w-full bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 disabled:opacity-50 flex justify-center items-center shadow-sm cursor-pointer"
+        disabled={isSubmitting || isResolved}
+        className={`w-full font-medium py-3 rounded-md flex justify-center items-center shadow-sm transition-colors ${
+          isResolved 
+            ? "bg-gray-100 text-gray-500 cursor-not-allowed border" 
+            : "bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
+        }`}
       >
-        {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <ShieldAlert className="w-5 h-5 mr-2" />}
-        {item.status !== 'ACTIVE' ? `Item is ${item.status}` : buttonText}
+        {isSubmitting ? (
+          <Loader2 className="w-5 h-5 animate-spin mr-2" />
+        ) : isResolved ? (
+          <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
+        ) : (
+          <ShieldAlert className="w-5 h-5 mr-2" />
+        )}
+        {buttonText}
       </button>
       
-      <p className="text-xs text-center text-gray-500">
-        This will open a secure claim workflow with private chat to verify details.
-      </p>
+      {item.status === 'CLAIM_PENDING' && !isResolved && (
+        <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-md text-xs text-amber-800 text-center">
+          A claim verification is currently in progress for this item. You can still reach out or view existing discussion.
+        </div>
+      )}
+
+      {!isResolved && (
+        <p className="text-xs text-center text-gray-500">
+          This will open a secure claim workflow with private chat to verify details.
+        </p>
+      )}
     </div>
   );
 }

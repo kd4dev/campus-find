@@ -23,8 +23,9 @@ export async function createItem(data: any) {
 
 export async function getItems(filters: any = {}) {
   await connectToDatabase();
-  const query: any = { status: "ACTIVE" };
+  const query: any = { status: { $nin: ["RESOLVED", "CLOSED"] } };
   
+  if (filters.status) query.status = filters.status;
   if (filters.type) query.type = filters.type.toUpperCase();
   if (filters.category) query.category = filters.category;
   if (filters.search) {
@@ -69,4 +70,25 @@ export async function deleteItem(id: string) {
 
   await Item.findByIdAndDelete(id);
   return { success: true };
+}
+
+export async function closeItem(id: string) {
+  const user = await getCurrentDbUser();
+  if (!user) throw new Error("Unauthorized");
+
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    throw new Error("Invalid item ID");
+  }
+
+  await connectToDatabase();
+  const item = await Item.findById(id);
+  if (!item) throw new Error("Item not found");
+
+  if (user.role !== "ADMIN" && item.userId.toString() !== user._id.toString()) {
+    throw new Error("Unauthorized to close this item");
+  }
+
+  item.status = "RESOLVED";
+  await item.save();
+  return JSON.parse(JSON.stringify(item));
 }

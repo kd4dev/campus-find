@@ -84,10 +84,42 @@ describe('Claim Workflow & Role Logic', () => {
   it('validates OTP expiry correctly', () => {
     const validExpiry = new Date(Date.now() + 30 * 60 * 1000);
     const expiredDate = new Date(Date.now() - 5000);
-
     const isExpired = (expiry: Date) => expiry < new Date();
 
     expect(isExpired(validExpiry)).toBe(false);
     expect(isExpired(expiredDate)).toBe(true);
   });
+
+  it('keeps items visible on browse list when CLAIM_PENDING until RESOLVED or CLOSED', () => {
+    const buildItemQuery = (filters: any = {}) => {
+      const query: any = { status: { $nin: ["RESOLVED", "CLOSED"] } };
+      if (filters.status) query.status = filters.status;
+      if (filters.type) query.type = filters.type.toUpperCase();
+      return query;
+    };
+
+    const defaultQuery = buildItemQuery({});
+    expect(defaultQuery.status).toEqual({ $nin: ["RESOLVED", "CLOSED"] });
+
+    // Both ACTIVE and CLAIM_PENDING should be retained by the query logic
+    const mockItems = [
+      { id: '1', status: 'ACTIVE' },
+      { id: '2', status: 'CLAIM_PENDING' },
+      { id: '3', status: 'RESOLVED' },
+      { id: '4', status: 'CLOSED' },
+    ];
+
+    const visibleItems = mockItems.filter(item => !['RESOLVED', 'CLOSED'].includes(item.status));
+    expect(visibleItems.map(i => i.id)).toEqual(['1', '2']);
+  });
+
+  it('allows responders to interact when item is CLAIM_PENDING but blocks when RESOLVED', () => {
+    const isActionAllowed = (status: string) => !['RESOLVED', 'CLOSED'].includes(status);
+
+    expect(isActionAllowed('ACTIVE')).toBe(true);
+    expect(isActionAllowed('CLAIM_PENDING')).toBe(true);
+    expect(isActionAllowed('RESOLVED')).toBe(false);
+    expect(isActionAllowed('CLOSED')).toBe(false);
+  });
 });
+
