@@ -41,7 +41,7 @@ export default function RootLayout({
             }}
           />
         </head>
-        <body className={`${inter.className} min-h-screen bg-white text-neutral-900 dark:bg-[#0a0a0b] dark:text-[#fafafa] transition-colors duration-200 relative overflow-x-hidden selection:bg-orange-100 dark:selection:bg-neutral-800`}>
+        <body className={`${inter.className} min-h-screen bg-[#FAF5EE] text-neutral-900 dark:bg-[#0a0a0b] dark:text-[#fafafa] transition-colors duration-200 relative overflow-x-hidden selection:bg-orange-100 dark:selection:bg-neutral-800`}>
           <ThemeProvider>
             <BackgroundEnvironment />
             <Suspense fallback={null}>

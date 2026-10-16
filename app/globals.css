@@ -57,7 +57,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #FAF5EE;
   --foreground: #171717;
   --card-bg: #ffffff;
   --border-color: #e5e5e5;
@@ -163,11 +163,15 @@ body {
 .chai-bg-invert {
   filter: invert(100%);
   -webkit-filter: invert(100%);
+  mix-blend-mode: multiply;
+  opacity: 0.85;
 }
 
 .dark .chai-bg-invert {
   filter: invert(0%);
   -webkit-filter: invert(0%);
+  mix-blend-mode: normal;
+  opacity: 1;
 }
 
 /* Accessibility: respect user preference for reduced motion */
