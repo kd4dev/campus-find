@@ -29,68 +29,72 @@ export default async function Dashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Welcome back, {dbUser.name}</h1>
+      <h1 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white tracking-tight">Welcome back, {dbUser.name}</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div className="bg-white p-6 rounded-xl border shadow-sm flex items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500 mb-1">Your Reports</p>
-            <p className="text-2xl font-bold">{lostCount + foundCount}</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Your Reports</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">{lostCount + foundCount}</p>
           </div>
-          <div className="bg-blue-50 p-3 rounded-lg text-blue-600">
+          <div className="bg-blue-50 dark:bg-blue-950/60 p-3 rounded-xl text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/50">
             <PackageSearch className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border shadow-sm flex items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500 mb-1">Active Claims</p>
-            <p className="text-2xl font-bold">{activeClaims}</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Active Claims</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">{activeClaims}</p>
           </div>
-          <div className="bg-orange-50 p-3 rounded-lg text-orange-600">
+          <div className="bg-amber-50 dark:bg-amber-950/60 p-3 rounded-xl text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-900/50">
             <ShieldAlert className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border shadow-sm flex items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500 mb-1">Returned Items</p>
-            <p className="text-2xl font-bold">{returnedItems}</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Returned Items</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">{returnedItems}</p>
           </div>
-          <div className="bg-green-50 p-3 rounded-lg text-green-600">
+          <div className="bg-emerald-50 dark:bg-emerald-950/60 p-3 rounded-xl text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50">
             <CheckCircle className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border shadow-sm flex items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-500 mb-1">Quick Actions</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Quick Actions</p>
             <div className="flex gap-2 mt-2">
-              <Link href="/items/lost/new" className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200">Lost</Link>
-              <Link href="/items/found/new" className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200">Found</Link>
+              <Link href="/items/lost/new" className="text-xs font-semibold bg-rose-50 dark:bg-rose-950/60 hover:bg-rose-100 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50 px-3 py-1.5 rounded-lg transition-colors">
+                + Lost
+              </Link>
+              <Link href="/items/found/new" className="text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900/50 px-3 py-1.5 rounded-lg transition-colors">
+                + Found
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white rounded-xl border shadow-sm p-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Recent Reports</h2>
-            <Link href="/dashboard/reports" className="text-blue-600 text-sm hover:underline">View All</Link>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Recent Reports</h2>
+            <Link href="/dashboard/reports" className="text-blue-600 dark:text-blue-400 text-sm hover:underline font-medium">View All &rarr;</Link>
           </div>
           <div className="space-y-4">
-            <p className="text-gray-500 text-sm">No recent reports found.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">No recent reports found.</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border shadow-sm p-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Recent Claims</h2>
-            <Link href="/dashboard/claims" className="text-blue-600 text-sm hover:underline">View All</Link>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Recent Claims</h2>
+            <Link href="/dashboard/claims" className="text-blue-600 dark:text-blue-400 text-sm hover:underline font-medium">View All &rarr;</Link>
           </div>
           <div className="space-y-4">
-            <p className="text-gray-500 text-sm">No active claims.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">No active claims.</p>
           </div>
         </div>
       </div>

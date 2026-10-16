@@ -7,7 +7,7 @@ import InteractiveWorkflowDemo from "@/components/aceternity/InteractiveWorkflow
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#fafafa] relative overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#f8fafc] dark:bg-[#090d16] text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-200">
       {/* Hero Section */}
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 flex flex-col items-center justify-center text-center px-4 overflow-hidden min-h-[88vh]">
         {/* Spotlight Radiant Glow */}
@@ -18,26 +18,26 @@ export default function Home() {
         <div className="absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_20%,black_100%)] pointer-events-none" />
 
         {/* Ambient color blobs */}
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-400/15 rounded-full blur-3xl -z-10 mix-blend-multiply animate-blob pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-400/15 rounded-full blur-3xl -z-10 mix-blend-multiply animate-blob animation-delay-2000 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-blob pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-400/15 dark:bg-purple-500/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000 pointer-events-none" />
 
         <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
           {/* Top Pill */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 mb-8 text-xs md:text-sm font-semibold text-indigo-700 bg-white/80 backdrop-blur-md border border-indigo-100 rounded-full shadow-sm hover:shadow transition-shadow">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 mb-8 text-xs md:text-sm font-semibold text-indigo-700 dark:text-indigo-300 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-indigo-100 dark:border-indigo-900/50 rounded-full shadow-sm hover:shadow transition-shadow">
             <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse" />
             <span>CampusFind 2.0 • Secure College Lost & Found</span>
           </div>
           
           {/* Headline with Gradient */}
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-gray-900 tracking-tight mb-6 leading-[1.08]">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-white tracking-tight mb-6 leading-[1.08]">
             Lost something? <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
               Recover it safely.
             </span>
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
             The private campus platform connecting finders and owners. No phone number leaks. Stays visible until verified physical handover with 6-digit OTP.
           </p>
           
@@ -51,30 +51,30 @@ export default function Home() {
             </Link>
 
             <Link href="/items" className="w-full sm:w-auto">
-              <button className="cursor-pointer w-full sm:w-auto px-7 py-3 rounded-full text-sm font-semibold text-gray-800 bg-white/90 hover:bg-white border border-gray-200 shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center hover:scale-105 active:scale-95">
-                <Search className="mr-2 w-4 h-4 text-gray-500" />
+              <button className="cursor-pointer w-full sm:w-auto px-7 py-3 rounded-full text-sm font-semibold text-gray-800 dark:text-gray-200 bg-white/90 hover:bg-white dark:bg-slate-900/90 dark:hover:bg-slate-800 border border-gray-200 dark:border-slate-800 shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center hover:scale-105 active:scale-95">
+                <Search className="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" />
                 Browse Campus Board
               </button>
             </Link>
           </div>
 
           {/* Quick Stats Strip */}
-          <div className="mt-16 pt-8 border-t border-gray-200/60 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center w-full max-w-4xl">
+          <div className="mt-16 pt-8 border-t border-gray-200/60 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center w-full max-w-4xl">
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-gray-900">100%</p>
-              <p className="text-xs text-gray-500 font-medium mt-0.5">Privacy First</p>
+              <p className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">100%</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Privacy First</p>
             </div>
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-blue-600">6-Digit</p>
-              <p className="text-xs text-gray-500 font-medium mt-0.5">Handover OTP</p>
+              <p className="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400">6-Digit</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Handover OTP</p>
             </div>
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-indigo-600">Instant</p>
-              <p className="text-xs text-gray-500 font-medium mt-0.5">Anonymous Chat</p>
+              <p className="text-2xl md:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">Instant</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Anonymous Chat</p>
             </div>
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-purple-600">Active</p>
-              <p className="text-xs text-gray-500 font-medium mt-0.5">Until Resolved</p>
+              <p className="text-2xl md:text-3xl font-extrabold text-purple-600 dark:text-purple-400">Active</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Until Resolved</p>
             </div>
           </div>
         </div>
@@ -88,13 +88,13 @@ export default function Home() {
       {/* Aceternity Bento Grid Section */}
       <section className="py-24 px-4 max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-900/50">
             Engineered for Campus Life
           </span>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-3 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mt-3 tracking-tight">
             Security That Actually Works
           </h2>
-          <p className="text-gray-600 text-base md:text-lg mt-3">
+          <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mt-3">
             Traditional WhatsApp groups leak your number and lead to stolen claims. CampusFind guarantees rightful ownership before handover.
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function Home() {
           <BentoGridItem
             title="Zero Phone Number Exposure"
             description="All conversations occur within the encrypted in-app chat. Finders and claimants communicate without exchanging private numbers."
-            icon={<div className="p-2.5 rounded-xl bg-blue-100 text-blue-600"><MessageSquare className="w-5 h-5" /></div>}
+            icon={<div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400"><MessageSquare className="w-5 h-5" /></div>}
             badge="Privacy"
             className="md:col-span-2"
           />
@@ -111,7 +111,7 @@ export default function Home() {
           <BentoGridItem
             title="6-Digit Handover OTP"
             description="When meeting on campus, the claimant shows a temporary 6-digit code. The finder inputs it into the app to complete the return."
-            icon={<div className="p-2.5 rounded-xl bg-emerald-100 text-emerald-600"><KeyRound className="w-5 h-5" /></div>}
+            icon={<div className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400"><KeyRound className="w-5 h-5" /></div>}
             badge="Anti-Theft"
             className="md:col-span-1"
           />
@@ -119,7 +119,7 @@ export default function Home() {
           <BentoGridItem
             title="Item Stays Visible Until Handover"
             description="Listings don't vanish the second a claim is initiated. Items remain marked 'Claim in Progress' until OTP verification completes."
-            icon={<div className="p-2.5 rounded-xl bg-amber-100 text-amber-700"><CheckCircle2 className="w-5 h-5" /></div>}
+            icon={<div className="p-2.5 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400"><CheckCircle2 className="w-5 h-5" /></div>}
             badge="Continuity"
             className="md:col-span-1"
           />
@@ -127,7 +127,7 @@ export default function Home() {
           <BentoGridItem
             title="Proof of Ownership Upload"
             description="Claimants can securely upload purchase invoices, serial numbers, or pictures of distinguishing features before meeting."
-            icon={<div className="p-2.5 rounded-xl bg-purple-100 text-purple-600"><FileCheck className="w-5 h-5" /></div>}
+            icon={<div className="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400"><FileCheck className="w-5 h-5" /></div>}
             badge="Verification"
             className="md:col-span-1"
           />
@@ -135,7 +135,7 @@ export default function Home() {
           <BentoGridItem
             title="Community Report & Moderation"
             description="Spam, inappropriate postings, and fake listings are instantly flagged by students and moderated through our admin dashboard."
-            icon={<div className="p-2.5 rounded-xl bg-rose-100 text-rose-600"><AlertCircle className="w-5 h-5" /></div>}
+            icon={<div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400"><AlertCircle className="w-5 h-5" /></div>}
             badge="Safety"
             className="md:col-span-1"
           />
@@ -144,7 +144,7 @@ export default function Home() {
 
       {/* Aceternity Radiant CTA Section */}
       <section className="py-20 px-4 relative">
-        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 text-white p-8 md:p-14 relative overflow-hidden border border-gray-800 shadow-2xl">
+        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 text-white p-8 md:p-14 relative overflow-hidden border border-gray-800 dark:border-slate-800 shadow-2xl">
           <div className="absolute -top-32 -right-32 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -176,19 +176,19 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-gray-200/80 bg-white">
+      <footer className="py-12 border-t border-gray-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center">
           <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-2">
             CampusFind
           </div>
-          <p className="text-gray-500 text-sm mb-6">Designed with care for college campuses everywhere.</p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-600">
-            <Link href="/items" className="hover:text-gray-900 transition-colors">Browse Items</Link>
-            <Link href="/items/lost/new" className="hover:text-gray-900 transition-colors">Report Lost</Link>
-            <Link href="/items/found/new" className="hover:text-gray-900 transition-colors">Report Found</Link>
-            <Link href="/dashboard" className="hover:text-gray-900 transition-colors">My Dashboard</Link>
+          <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Designed with care for college campuses everywhere.</p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+            <Link href="/items" className="hover:text-gray-900 dark:hover:text-white transition-colors">Browse Items</Link>
+            <Link href="/items/lost/new" className="hover:text-gray-900 dark:hover:text-white transition-colors">Report Lost</Link>
+            <Link href="/items/found/new" className="hover:text-gray-900 dark:hover:text-white transition-colors">Report Found</Link>
+            <Link href="/dashboard" className="hover:text-gray-900 dark:hover:text-white transition-colors">My Dashboard</Link>
           </div>
-          <div className="mt-8 text-gray-400 text-xs">
+          <div className="mt-8 text-gray-400 dark:text-gray-600 text-xs">
             © {new Date().getFullYear()} CampusFind. All rights reserved.
           </div>
         </div>

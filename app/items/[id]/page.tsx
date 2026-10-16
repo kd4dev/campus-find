@@ -53,10 +53,10 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
         <div className="grid md:grid-cols-2">
           {/* Images */}
-          <div className="bg-gray-100 min-h-[300px] md:min-h-full">
+          <div className="bg-slate-100 dark:bg-slate-950 min-h-[300px] md:min-h-full">
             <ImageGallery images={item.images || []} itemName={item.itemName} />
           </div>
 
@@ -64,67 +64,73 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
           <div className="p-8 flex flex-col">
             <div className="flex justify-between items-start mb-4">
               <div>
-                <div className={`inline-block px-3 py-1 text-xs font-bold rounded-full mb-3 ${item.type === 'LOST' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                <div className={`inline-block px-3 py-1 text-xs font-bold rounded-full mb-3 ${
+                  item.type === 'LOST' 
+                    ? 'bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 dark:border dark:border-rose-800/60' 
+                    : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border dark:border-emerald-800/60'
+                }`}>
                   {item.type} ITEM
                 </div>
-                <h1 className="text-3xl font-bold mb-2 text-gray-900">{item.itemName}</h1>
+                <h1 className="text-3xl font-bold mb-2 text-slate-900 dark:text-white tracking-tight">{item.itemName}</h1>
               </div>
               <div className="text-right">
-                <span className="text-sm bg-gray-100 text-gray-800 px-2 py-1 rounded">{item.status}</span>
+                <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-md font-semibold">
+                  {item.status}
+                </span>
               </div>
             </div>
 
             <div className="space-y-4 mb-8 flex-1">
-              <div className="flex items-center text-gray-700">
-                <Tag className="w-5 h-5 mr-3 text-gray-400" />
+              <div className="flex items-center text-slate-700 dark:text-slate-300">
+                <Tag className="w-5 h-5 mr-3 text-slate-400 dark:text-slate-500 shrink-0" />
                 <span>{item.category}</span>
               </div>
-              <div className="flex items-center text-gray-700">
-                <MapPin className="w-5 h-5 mr-3 text-gray-400" />
+              <div className="flex items-center text-slate-700 dark:text-slate-300">
+                <MapPin className="w-5 h-5 mr-3 text-slate-400 dark:text-slate-500 shrink-0" />
                 <span>{item.location}</span>
               </div>
-              <div className="flex items-center text-gray-700">
-                <Calendar className="w-5 h-5 mr-3 text-gray-400" />
+              <div className="flex items-center text-slate-700 dark:text-slate-300">
+                <Calendar className="w-5 h-5 mr-3 text-slate-400 dark:text-slate-500 shrink-0" />
                 <span>
                   {item.date ? format(new Date(item.date), 'MMMM d, yyyy') : 'Recently'} 
                   {item.approximateTime && ` at approx. ${item.approximateTime}`}
                 </span>
               </div>
               
-              <div className="pt-4 border-t">
-                <h3 className="font-semibold mb-2 text-gray-900">Description</h3>
-                <p className="text-gray-600 whitespace-pre-wrap">{item.description}</p>
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+                <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">Description</h3>
+                <p className="text-slate-600 dark:text-slate-300 whitespace-pre-wrap text-sm leading-relaxed">{item.description}</p>
               </div>
 
               {(item.color || item.brand || item.itemModel) && (
-                <div className="pt-4 border-t grid grid-cols-2 gap-4">
-                  {item.color && <div><span className="text-gray-500 text-sm block">Color</span><span className="text-gray-900">{item.color}</span></div>}
-                  {item.brand && <div><span className="text-gray-500 text-sm block">Brand</span><span className="text-gray-900">{item.brand}</span></div>}
-                  {item.itemModel && <div><span className="text-gray-500 text-sm block">Model</span><span className="text-gray-900">{item.itemModel}</span></div>}
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4">
+                  {item.color && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Color</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.color}</span></div>}
+                  {item.brand && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Brand</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.brand}</span></div>}
+                  {item.itemModel && <div><span className="text-slate-500 dark:text-slate-400 text-xs block mb-0.5">Model</span><span className="text-slate-900 dark:text-slate-100 text-sm font-medium">{item.itemModel}</span></div>}
                 </div>
               )}
 
               {item.distinguishingFeatures && item.type === 'LOST' && (
-                <div className="pt-4 border-t">
-                  <h3 className="font-semibold text-sm text-gray-500 mb-1">Distinguishing Features</h3>
-                  <p className="text-gray-900">{item.distinguishingFeatures}</p>
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <h3 className="font-semibold text-xs text-slate-500 dark:text-slate-400 mb-1">Distinguishing Features</h3>
+                  <p className="text-slate-900 dark:text-slate-100 text-sm">{item.distinguishingFeatures}</p>
                 </div>
               )}
             </div>
 
-            <div className="mt-auto border-t pt-6">
+            <div className="mt-auto border-t border-slate-200 dark:border-slate-800 pt-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center">
                   {item.userId?.avatar ? (
-                    <img src={item.userId.avatar} alt={item.userId.name} className="w-10 h-10 rounded-full mr-3 border" />
+                    <img src={item.userId.avatar} alt={item.userId.name} className="w-10 h-10 rounded-full mr-3 border border-slate-200 dark:border-slate-700 object-cover" />
                   ) : (
-                    <div className="w-10 h-10 bg-gray-200 rounded-full mr-3 flex items-center justify-center">
-                      <UserIcon className="w-5 h-5 text-gray-500" />
+                    <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full mr-3 flex items-center justify-center text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                      <UserIcon className="w-5 h-5" />
                     </div>
                   )}
                   <div>
-                    <p className="text-sm text-gray-500">Reported by</p>
-                    <p className="font-medium text-gray-900">{item.userId?.name || 'College Student'}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Reported by</p>
+                    <p className="font-medium text-slate-900 dark:text-white text-sm">{item.userId?.name || 'College Student'}</p>
                   </div>
                 </div>
 
@@ -135,14 +141,14 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
 
               {currentUser ? (
                 isOwner ? (
-                  <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+                  <div className="bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/60 p-4 rounded-xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
-                        <ShieldCheck className="w-5 h-5 mr-2 text-blue-600 shrink-0" />
-                        <span className="font-semibold text-blue-900 text-sm">You reported this item</span>
+                        <ShieldCheck className="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400 shrink-0" />
+                        <span className="font-semibold text-blue-900 dark:text-blue-200 text-sm">You reported this item</span>
                       </div>
                       {itemClaims.length > 0 && (
-                        <span className="text-xs bg-blue-200 text-blue-900 font-bold px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-blue-200 dark:bg-blue-900/60 text-blue-900 dark:text-blue-200 font-bold px-2 py-0.5 rounded-full">
                           {itemClaims.length} Response{itemClaims.length > 1 ? "s" : ""}
                         </span>
                       )}
@@ -154,14 +160,14 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                           const isClaimant = c.claimantId?._id?.toString() === currentUserId;
                           const otherParty = isClaimant ? c.finderId : c.claimantId;
                           return (
-                            <div key={c._id} className="bg-white p-3 rounded-lg border border-blue-100 flex items-center justify-between shadow-sm">
+                            <div key={c._id} className="bg-white dark:bg-slate-800/90 p-3 rounded-lg border border-blue-100 dark:border-slate-700 flex items-center justify-between shadow-sm">
                               <div>
-                                <p className="text-xs text-gray-500">From <span className="font-semibold text-gray-800">{otherParty?.name || 'Student'}</span></p>
-                                <p className="text-xs text-gray-600 mt-0.5">Status: <span className="font-medium text-blue-600">{c.status}</span></p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400">From <span className="font-semibold text-slate-800 dark:text-slate-200">{otherParty?.name || 'Student'}</span></p>
+                                <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Status: <span className="font-medium text-blue-600 dark:text-blue-400">{c.status}</span></p>
                               </div>
                               <Link 
                                 href={`/claims/${c._id}`}
-                                className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+                                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors shadow-sm"
                               >
                                 Open Claim & Chat
                               </Link>
@@ -170,20 +176,20 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                         })}
                       </div>
                     ) : (
-                      <p className="text-xs text-blue-700 mt-1">
+                      <p className="text-xs text-blue-700 dark:text-blue-300 mt-1">
                         Your listing is visible on campus. When someone responds or claims it, you'll see them here and receive a notification.
                       </p>
                     )}
                   </div>
                 ) : userClaim ? (
-                  <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl space-y-3">
+                  <div className="bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 p-4 rounded-xl space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-amber-900">You have an ongoing claim</span>
-                      <span className="text-xs bg-amber-200 text-amber-900 px-2 py-0.5 rounded font-bold">{userClaim.status}</span>
+                      <span className="text-sm font-semibold text-amber-900 dark:text-amber-200">You have an ongoing claim</span>
+                      <span className="text-xs bg-amber-200 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 px-2 py-0.5 rounded font-bold">{userClaim.status}</span>
                     </div>
                     <Link
                       href={`/claims/${userClaim._id}`}
-                      className="w-full block text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-md text-sm transition-colors shadow-sm"
+                      className="w-full block text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg text-sm transition-colors shadow-sm"
                     >
                       Open Your Claim & Chat
                     </Link>
@@ -192,9 +198,9 @@ export default async function ItemDetails({ params }: { params: Promise<{ id: st
                   <ClaimButton item={item} currentUser={currentUser} />
                 )
               ) : (
-                <div className="bg-gray-50 p-4 rounded-lg text-center border">
-                  <p className="text-gray-600 text-sm mb-3">Sign in to contact the reporter or claim this item.</p>
-                  <a href="/sign-in" className="inline-block bg-blue-600 text-white px-6 py-2 rounded-md font-medium text-sm">Sign In</a>
+                <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl text-center border border-slate-200 dark:border-slate-700">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm mb-3">Sign in to contact the reporter or claim this item.</p>
+                  <a href="/sign-in" className="inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors shadow-sm">Sign In</a>
                 </div>
               )}
             </div>

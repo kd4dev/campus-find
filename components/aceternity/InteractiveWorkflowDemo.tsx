@@ -46,33 +46,33 @@ export default function InteractiveWorkflowDemo() {
   }, [steps.length]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto my-12 bg-white/90 backdrop-blur-xl rounded-3xl border border-gray-200/80 shadow-2xl overflow-hidden p-6 md:p-8">
+    <div className="w-full max-w-5xl mx-auto my-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-gray-200/80 dark:border-slate-800/80 shadow-2xl overflow-hidden p-6 md:p-8">
       <div className="text-center max-w-2xl mx-auto mb-8">
-        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100/80 text-blue-800 border border-blue-200">
+        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-100/80 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-900/50">
           Live Interactive Simulation
         </span>
-        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mt-2">
           Experience the Return Journey
         </h3>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
           Click any step below to see how CampusFind protects students at every turn.
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-gray-50/80 p-1.5 rounded-2xl border border-gray-100">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-gray-50/80 dark:bg-slate-950/60 p-1.5 rounded-2xl border border-gray-100 dark:border-slate-800">
         {steps.map((s, idx) => (
           <button
             key={s.id}
             onClick={() => setActiveStep(idx)}
             className={`cursor-pointer px-3 py-3 rounded-xl text-left transition-all relative ${
               activeStep === idx
-                ? "bg-white text-gray-900 shadow-sm font-semibold"
-                : "text-gray-500 hover:text-gray-800 hover:bg-gray-100/60"
+                ? "bg-white dark:bg-slate-800 text-gray-900 dark:text-white shadow-sm font-semibold"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100/60 dark:hover:bg-slate-800/50"
             }`}
           >
             <div className="flex items-center space-x-2">
-              <span className="p-1 rounded-lg bg-gray-50">{s.icon}</span>
+              <span className="p-1 rounded-lg bg-gray-50 dark:bg-slate-800/80">{s.icon}</span>
               <span className="text-xs md:text-sm truncate">{s.title}</span>
             </div>
             {activeStep === idx && (

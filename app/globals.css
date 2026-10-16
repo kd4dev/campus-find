@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --animate-blob: blob 7s infinite;
   --animate-shimmer: shimmer 2.5s linear infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
 @keyframes blob {
@@ -22,9 +25,29 @@
   }
 }
 
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #09090b;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+.dark {
+  --background: #090d16;
+  --foreground: #f8fafc;
+  --card-bg: #0f172a;
+  --border-color: #1e293b;
 }
 
 body {
@@ -33,9 +56,10 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom Aceternity-style grid and dot patterns */
+/* Custom Aceternity-style grid and dot patterns with theme adaptability */
 .bg-grid-slate {
   background-size: 40px 40px;
   background-image: 
@@ -43,9 +67,19 @@ body {
     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 
+.dark .bg-grid-slate {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
+}
+
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1.2px, transparent 1.2px);
 }
 
 /* Shimmer button animation helper */
@@ -67,10 +101,27 @@ body {
   border: 1px solid rgba(229, 231, 235, 0.8);
 }
 
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+}
+
 /* Micro-interaction tap animation classes */
 .btn-tap {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 .btn-tap:active {
   transform: scale(0.96);
+}
+
+/* Accessibility: respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
