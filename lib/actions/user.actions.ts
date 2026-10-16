@@ -30,7 +30,10 @@ export async function syncCurrentUser() {
       dbUser.clerkUserId = user.id;
       dbUser.name = name;
       dbUser.email = primaryEmail;
-      if (user.imageUrl) dbUser.avatar = user.imageUrl;
+      dbUser.avatar = user.imageUrl || (typeof dbUser.avatar === 'string' ? dbUser.avatar : '') || '';
+      if (!['USER', 'ADMIN'].includes(dbUser.role)) {
+        dbUser.role = 'USER';
+      }
       await dbUser.save();
     } else {
       dbUser = await User.create({
