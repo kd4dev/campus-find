@@ -1,195 +1,103 @@
 import Link from "next/link";
-import { ArrowRight, Search, ShieldCheck, MessageSquare, MapPin, KeyRound, Sparkles, AlertCircle, FileCheck, CheckCircle2 } from "lucide-react";
-import { Spotlight } from "@/components/aceternity/Spotlight";
-import { BentoGrid, BentoGridItem } from "@/components/aceternity/BentoGrid";
-import { ShimmerButton } from "@/components/aceternity/ShimmerButton";
-import InteractiveWorkflowDemo from "@/components/aceternity/InteractiveWorkflowDemo";
+import HeroSection from "@/components/landing/HeroSection";
+import CampusContrast from "@/components/landing/CampusContrast";
+import ProtocolTimeline from "@/components/landing/ProtocolTimeline";
+import CategoryExplorer from "@/components/landing/CategoryExplorer";
+import ClosingCTA from "@/components/landing/ClosingCTA";
+import { ShieldCheck, Lock, CheckCircle2, Heart } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8fafc] dark:bg-[#090d16] text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-200">
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 flex flex-col items-center justify-center text-center px-4 overflow-hidden min-h-[88vh]">
-        {/* Spotlight Radiant Glow */}
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#6366f1" />
-        
-        {/* Dot pattern background with radial fade */}
-        <div className="absolute inset-0 z-0 bg-dot-pattern opacity-60 pointer-events-none" />
-        <div className="absolute inset-0 z-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_20%,black_100%)] pointer-events-none" />
+    <div className="flex flex-col min-h-screen bg-slate-50/60 dark:bg-[#0b0f17] text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-200">
+      {/* 1. Asymmetric Hero with Live Interactive Console */}
+      <HeroSection />
 
-        {/* Ambient color blobs */}
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-blob pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-400/15 dark:bg-purple-500/10 rounded-full blur-3xl -z-10 mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000 pointer-events-none" />
+      {/* 2. Campus Contrast: Why Group Chats Fail vs. Handover Protocol */}
+      <CampusContrast />
 
-        <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
-          {/* Top Pill */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 mb-8 text-xs md:text-sm font-semibold text-indigo-700 dark:text-indigo-300 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-indigo-100 dark:border-indigo-900/50 rounded-full shadow-sm hover:shadow transition-shadow">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse" />
-            <span>CampusFind 2.0 • Secure College Lost & Found</span>
-          </div>
-          
-          {/* Headline with Gradient */}
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-white tracking-tight mb-6 leading-[1.08]">
-            Lost something? <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
-              Recover it safely.
-            </span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            The private campus platform connecting finders and owners. No phone number leaks. Stays visible until verified physical handover with 6-digit OTP.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-            <Link href="/items/lost/new" className="w-full sm:w-auto">
-              <ShimmerButton className="w-full sm:w-auto text-sm font-semibold px-8 py-3.5 rounded-full shadow-xl shadow-blue-500/10">
-                <span>Report Lost Item</span>
-                <ArrowRight className="ml-2 w-4 h-4 inline-block" />
-              </ShimmerButton>
-            </Link>
+      {/* 3. The 4-Step Handover Protocol */}
+      <ProtocolTimeline />
 
-            <Link href="/items" className="w-full sm:w-auto">
-              <button className="cursor-pointer w-full sm:w-auto px-7 py-3 rounded-full text-sm font-semibold text-gray-800 dark:text-gray-200 bg-white/90 hover:bg-white dark:bg-slate-900/90 dark:hover:bg-slate-800 border border-gray-200 dark:border-slate-800 shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center hover:scale-105 active:scale-95">
-                <Search className="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" />
-                Browse Campus Board
-              </button>
-            </Link>
-          </div>
+      {/* 4. Live Category Explorer */}
+      <CategoryExplorer />
 
-          {/* Quick Stats Strip */}
-          <div className="mt-16 pt-8 border-t border-gray-200/60 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center w-full max-w-4xl">
+      {/* 5. Closing Campus Guarantee CTA */}
+      <ClosingCTA />
+
+      {/* Cohesive Campus Footer */}
+      <footer className="py-14 border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div className="md:col-span-2 space-y-3">
+              <div className="flex items-center space-x-2">
+                <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                  CampusFind
+                </span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900/50">
+                  v2.4
+                </span>
+              </div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
+                The privacy-first lost & found platform built specifically for university campuses. No phone number leaks, guaranteed OTP handovers, and active listings until physical return.
+              </p>
+              <div className="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400 pt-1">
+                <span className="flex items-center">
+                  <ShieldCheck className="w-3.5 h-3.5 mr-1 text-emerald-500" />
+                  Anti-Doxxing Protected
+                </span>
+                <span className="flex items-center">
+                  <Lock className="w-3.5 h-3.5 mr-1 text-blue-500" />
+                  Encrypted In-App Chat
+                </span>
+              </div>
+            </div>
+
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">100%</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Privacy First</p>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+                Quick Actions
+              </h4>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                <li>
+                  <Link href="/items/lost/new" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    Report Lost Item
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/items/found/new" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    Report Found Item
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/items" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    Campus Live Board
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    My Claims & Reports
+                  </Link>
+                </li>
+              </ul>
             </div>
+
             <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400">6-Digit</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Handover OTP</p>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">Instant</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Anonymous Chat</p>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-purple-600 dark:text-purple-400">Active</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">Until Resolved</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Workflow Simulation */}
-      <section className="py-12 px-4 relative z-10">
-        <InteractiveWorkflowDemo />
-      </section>
-
-      {/* Aceternity Bento Grid Section */}
-      <section className="py-24 px-4 max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-900/50">
-            Engineered for Campus Life
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mt-3 tracking-tight">
-            Security That Actually Works
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mt-3">
-            Traditional WhatsApp groups leak your number and lead to stolen claims. CampusFind guarantees rightful ownership before handover.
-          </p>
-        </div>
-
-        <BentoGrid>
-          <BentoGridItem
-            title="Zero Phone Number Exposure"
-            description="All conversations occur within the encrypted in-app chat. Finders and claimants communicate without exchanging private numbers."
-            icon={<div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400"><MessageSquare className="w-5 h-5" /></div>}
-            badge="Privacy"
-            className="md:col-span-2"
-          />
-
-          <BentoGridItem
-            title="6-Digit Handover OTP"
-            description="When meeting on campus, the claimant shows a temporary 6-digit code. The finder inputs it into the app to complete the return."
-            icon={<div className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400"><KeyRound className="w-5 h-5" /></div>}
-            badge="Anti-Theft"
-            className="md:col-span-1"
-          />
-
-          <BentoGridItem
-            title="Item Stays Visible Until Handover"
-            description="Listings don't vanish the second a claim is initiated. Items remain marked 'Claim in Progress' until OTP verification completes."
-            icon={<div className="p-2.5 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400"><CheckCircle2 className="w-5 h-5" /></div>}
-            badge="Continuity"
-            className="md:col-span-1"
-          />
-
-          <BentoGridItem
-            title="Proof of Ownership Upload"
-            description="Claimants can securely upload purchase invoices, serial numbers, or pictures of distinguishing features before meeting."
-            icon={<div className="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400"><FileCheck className="w-5 h-5" /></div>}
-            badge="Verification"
-            className="md:col-span-1"
-          />
-
-          <BentoGridItem
-            title="Community Report & Moderation"
-            description="Spam, inappropriate postings, and fake listings are instantly flagged by students and moderated through our admin dashboard."
-            icon={<div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400"><AlertCircle className="w-5 h-5" /></div>}
-            badge="Safety"
-            className="md:col-span-1"
-          />
-        </BentoGrid>
-      </section>
-
-      {/* Aceternity Radiant CTA Section */}
-      <section className="py-20 px-4 relative">
-        <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 text-white p-8 md:p-14 relative overflow-hidden border border-gray-800 dark:border-slate-800 shadow-2xl">
-          <div className="absolute -top-32 -right-32 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 text-center max-w-2xl mx-auto">
-            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
-              Get Started in Seconds
-            </span>
-            <h2 className="text-3xl md:text-5xl font-black mt-4 mb-4 tracking-tight">
-              Ready to recover your item?
-            </h2>
-            <p className="text-gray-300 text-base md:text-lg mb-8 leading-relaxed">
-              Join students across your campus who have recovered keys, IDs, wallets, and laptops safely.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/items/found/new" className="w-full sm:w-auto">
-                <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-bold bg-white text-gray-900 hover:bg-gray-100 transition-all hover:scale-105 active:scale-95 shadow-lg">
-                  Report Found Item
-                </button>
-              </Link>
-              <Link href="/items" className="w-full sm:w-auto">
-                <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-bold bg-transparent text-white border border-gray-700 hover:bg-white/10 transition-all hover:scale-105 active:scale-95">
-                  Explore Active Items
-                </button>
-              </Link>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+                Campus Safety
+              </h4>
+              <ul className="space-y-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                <li>• Always meet in well-lit, public areas (e.g. Student Union).</li>
+                <li>• Never hand over items before entering the 6-digit OTP.</li>
+                <li>• Keep unique markings private until verified in chat.</li>
+                <li>• Inappropriate or suspicious listings are moderated daily.</li>
+              </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-gray-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center">
-          <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-2">
-            CampusFind
-          </div>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Designed with care for college campuses everywhere.</p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-            <Link href="/items" className="hover:text-gray-900 dark:hover:text-white transition-colors">Browse Items</Link>
-            <Link href="/items/lost/new" className="hover:text-gray-900 dark:hover:text-white transition-colors">Report Lost</Link>
-            <Link href="/items/found/new" className="hover:text-gray-900 dark:hover:text-white transition-colors">Report Found</Link>
-            <Link href="/dashboard" className="hover:text-gray-900 dark:hover:text-white transition-colors">My Dashboard</Link>
-          </div>
-          <div className="mt-8 text-gray-400 dark:text-gray-600 text-xs">
-            © {new Date().getFullYear()} CampusFind. All rights reserved.
+          <div className="pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-4">
+            <p>© {new Date().getFullYear()} CampusFind. Built for safer college communities.</p>
+            <div className="flex items-center space-x-1">
+              <span>Crafted for university students everywhere</span>
+            </div>
           </div>
         </div>
       </footer>
